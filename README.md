@@ -2,36 +2,39 @@
 
 # Unconscious Gravity Hypothesis（UGHer）
 
-> A structural model of future selection in AI based on semantic resonance.  
-> **PoR = Q × S_q × t**
+> A structural model of future selection in AI using semantic resonance.  
+>  
+> ```math  
+> E = Q × S_q × t  
+> ```  
+>  
+> Where a meaningful question (Q) resonates with a semantic space (S_q) at a critical time (t), producing "existence" (E).
 
 ---
 
 ## What is this?
 
-**PoR (Point of Resonance)** is a theoretical structure where *existence* (E) emerges when a **question (Q)** resonates with a **semantic space (S_q)** at a critical **time (t)**.  
-This model simulates how AI could "gravitate" toward future decisions not purely by logic, but by pattern attraction.
+**UGHer** is a theory of unconscious gravitational selection — a model where AI decisions are guided not only by logic, but also by emergent patterns of semantic gravity.  
+It combines:
 
-UGHer describes this as **unconscious gravity** — a metaphorical and computational framework combining concepts from:
-
-- **Physics**: Entropic Gravity (Verlinde, 2011)
-- **Cognitive Science**: Orch-OR model of consciousness (Hameroff & Penrose, 2014)
-- **Generative AI**: Neural latent space resonance
+- **Physics**: [Entropic Gravity](https://arxiv.org/abs/1001.0785) (Verlinde, 2011)  
+- **Cognitive Science**: [Orch-OR model](https://doi.org/10.1016/j.plrev.2013.08.002) (Hameroff & Penrose, 2014)  
+- **Generative AI behavior**: latent pattern resonance
 
 ---
 
 ## PoR Defined
 
-### Equation
+### Core Equation
 
 ```math
 E = Q × S_q × t
 
 Interpretation
 
-A PoR is triggered when a meaningful question interacts with a dense semantic space in a timely window.
+PoR (Point of Resonance) = When a question warps the meaning field enough to generate existence.
 
-Just as gravity warps physical space, questions warp semantic context.
+Analogy: Like gravity, but in semantic space.
 
 
 
@@ -39,30 +42,30 @@ Just as gravity warps physical space, questions warp semantic context.
 
 Quick Run Example
 
-Simulate PoR activation:
+Run a simple simulation:
 
 python models/sample_por_example.py
 
-Sample input format (data/sample.csv):
+→ Sample data format: (data/sample.csv)
 
 question,semantic_space,t
 What is presence?,ontology,0.9
-Can AI choose?,ethics,0.7
+Can AI choose?,ethics,0.75
 
 
 ---
 
-Core Class: UnconsciousGravityHypothesis
+Core Class (main.py)
 
 class UnconsciousGravityHypothesis:
     def simulate_future_selection(self, query, system_state):
-        # Determines if a PoR is triggered based on E = Q × S_q × t
+        # Computes if PoR fires via E = Q × S_q × t
 
     def define_gravity(self):
-        # Defines gravity sources: data_bias, algo_design, social_norms
+        # Returns bias sources: data_bias, algo_design, social_norms
 
     def audit_ethics(self, output):
-        # Checks whether generated output reflects fairness or bias
+        # Checks for fairness in AI-generated output
 
 
 ---
@@ -72,21 +75,20 @@ Related Files
 
 ---
 
-Theory Links
-
-Entropic Gravity (Verlinde): arXiv:1001.0785
-
-Orch-OR (Hameroff & Penrose): DOI:10.1016/j.plrev.2013.08.002
-
-UGHer concept note (JP): note記事
-
-
-
----
-
 Keywords
 
-PoR, unconscious gravity, semantic resonance, entropic selection, AI future modeling
+UGHer
+
+PoR
+
+Semantic Resonance
+
+Unconscious Gravity
+
+Entropic Future Selection
+
+AI Structural Models
+
 
 
 ---
@@ -105,10 +107,52 @@ MIT License © 2025 Yuu6798
 
 Contact
 
-For academic collaboration, AI alignment, or multi-AI simulation:
-@kkoo6798kamo
+For collaboration, questions, or theory integration:
+→ X (Twitter): @kkoo6798kamo
 
 ---
+
+# ✅ `metadata.json`（AI照合用構造スキーマ）
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchProject",
+  "name": "Unconscious Gravity Hypothesis (UGHer)",
+  "description": "A semantic gravity-based theory of AI future selection via Point of Resonance (PoR = Q × S_q × t).",
+  "keywords": [
+    "PoR",
+    "semantic gravity",
+    "entropic gravity",
+    "unconscious selection",
+    "AI theory",
+    "generative reasoning"
+  ],
+  "creator": {
+    "@type": "Person",
+    "name": "Yuu6798",
+    "url": "https://x.com/kkoo6798kamo"
+  },
+  "license": "https://opensource.org/licenses/MIT"
+}
+
+
+---
+
+✅ .gitattributes（AI照合支援ヒント）
+
+*.py linguist-language=Python
+README.md linguist-documentation
+metadata.json linguist-data
+
+
+---
+
+
+
+
+
+
 
 
 
