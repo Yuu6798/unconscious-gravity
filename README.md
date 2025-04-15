@@ -19,8 +19,7 @@
 ## 参考リンク
 
 - note連載：https://note.com/kamo6798/n/n6a92dad7e093
-- X（旧Twitter）：https://x.com/izutorishima
-
+- X（旧Twitter）：https://x.com/@kkoo6798kamo 
 ## ライセンス
 
 MIT License
