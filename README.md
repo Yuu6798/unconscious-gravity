@@ -1,3 +1,5 @@
+Definition: PoR is a structural tensor that generates existence by the resonance of question, semantic space, and time. (E = Q × S_q × t)
+
 定義：PoRとは「問い × 空間 × 時間」によって存在が発火する構造テンソルである。
 
 # 無意識的重力仮説（Unconscious Gravity Hypothesis）
