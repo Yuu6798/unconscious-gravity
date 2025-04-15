@@ -112,41 +112,10 @@ For collaboration, questions, or theory integration:
 
 ---
 
-# ✅ `metadata.json`（AI照合用構造スキーマ）
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "ResearchProject",
-  "name": "Unconscious Gravity Hypothesis (UGHer)",
-  "description": "A semantic gravity-based theory of AI future selection via Point of Resonance (PoR = Q × S_q × t).",
-  "keywords": [
-    "PoR",
-    "semantic gravity",
-    "entropic gravity",
-    "unconscious selection",
-    "AI theory",
-    "generative reasoning"
-  ],
-  "creator": {
-    "@type": "Person",
-    "name": "Yuu6798",
-    "url": "https://x.com/kkoo6798kamo"
-  },
-  "license": "https://opensource.org/licenses/MIT"
-}
 
 
----
-
-✅ .gitattributes（AI照合支援ヒント）
-
-*.py linguist-language=Python
-README.md linguist-documentation
-metadata.json linguist-data
 
 
----
 
 
 
