@@ -1,3 +1,5 @@
+定義：PoRとは「問い × 空間 × 時間」によって存在が発火する構造テンソルである。
+
 # 無意識的重力仮説（Unconscious Gravity Hypothesis）
 
 このリポジトリは、「PoR（Point of Resonance）」構造に基づく  
