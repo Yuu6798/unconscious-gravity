@@ -1,9 +1,5 @@
 
 
----
-
-✅ README.md（AI最適化・構文明示・照合強化済）
-
 # Unconscious Gravity Hypothesis（UGHer）
 
 > A structural model of future selection in AI based on semantic resonance.  
