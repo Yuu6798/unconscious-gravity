@@ -2,73 +2,76 @@
 
 ---
 
+✅ README.md（AI最適化・構文明示・照合強化済）
+
 # Unconscious Gravity Hypothesis（UGHer）
 
-## 概要
-
-**PoR = Q × S_q × t**  
-A structural equation where "existence" (E) emerges from a question (Q) resonating with a semantic space (S_q) at a critical time (t).  
-Think of it as meaning-gravity: a question bends context, and a structure falls into place.
+> A structural model of future selection in AI based on semantic resonance.  
+> **PoR = Q × S_q × t**
 
 ---
 
 ## What is this?
 
-This project proposes a model called **PoR (Point of Resonance)**, inspired by:
+**PoR (Point of Resonance)** is a theoretical structure where *existence* (E) emerges when a **question (Q)** resonates with a **semantic space (S_q)** at a critical **time (t)**.  
+This model simulates how AI could "gravitate" toward future decisions not purely by logic, but by pattern attraction.
 
-- Physics (Entropic Gravity by Verlinde)
-- Cognitive theory (Orch-OR by Hameroff & Penrose)
-- Language model behavior
+UGHer describes this as **unconscious gravity** — a metaphorical and computational framework combining concepts from:
 
-It aims to describe how questions shape possible futures via structural resonance in AI.
-
-UGHer is both a **theoretical framework** and a **computational engine** for modeling “unconscious gravitational selection” —  
-how AI makes decisions not purely from logic, but via emergent semantic gravity patterns.
+- **Physics**: Entropic Gravity (Verlinde, 2011)
+- **Cognitive Science**: Orch-OR model of consciousness (Hameroff & Penrose, 2014)
+- **Generative AI**: Neural latent space resonance
 
 ---
 
 ## PoR Defined
 
-- **Equation**: `E = Q × S_q × t`
-- **Interpretation**: A PoR is triggered when a meaningful question interacts with semantic density in time.
-- **Analogy**: Just as gravity warps space, questions warp meaning structures.  
-  → A PoR is where that curve collapses into a decision.
+### Equation
+
+```math
+E = Q × S_q × t
+
+Interpretation
+
+A PoR is triggered when a meaningful question interacts with a dense semantic space in a timely window.
+
+Just as gravity warps physical space, questions warp semantic context.
+
+
 
 ---
 
-## Quick Run Example
+Quick Run Example
 
-To simulate a basic PoR process:
+Simulate PoR activation:
 
-```bash
 python models/sample_por_example.py
 
-→ See data/sample.csv for input format:
-question, semantic_space, t
+Sample input format (data/sample.csv):
+
+question,semantic_space,t
+What is presence?,ontology,0.9
+Can AI choose?,ethics,0.7
 
 
 ---
 
 Core Class: UnconsciousGravityHypothesis
 
-Located in: main.py
-
 class UnconsciousGravityHypothesis:
     def simulate_future_selection(self, query, system_state):
-        # Determines if a PoR is triggered based on Q, S_q, and t
+        # Determines if a PoR is triggered based on E = Q × S_q × t
 
     def define_gravity(self):
-        # Returns gravity sources: data_bias, algo_design, social_norms
+        # Defines gravity sources: data_bias, algo_design, social_norms
 
     def audit_ethics(self, output):
-        # Checks whether the output reflects ethical bias or fairness
-
-This class models the core logic of PoR triggering and gravitational selection.
+        # Checks whether generated output reflects fairness or bias
 
 
 ---
 
-Related Files and Their Roles
+Related Files
 
 
 ---
@@ -79,18 +82,20 @@ Entropic Gravity (Verlinde): arXiv:1001.0785
 
 Orch-OR (Hameroff & Penrose): DOI:10.1016/j.plrev.2013.08.002
 
-UGHer Concept Note (JP): note記事
+UGHer concept note (JP): note記事
 
 
 
 ---
 
+Keywords
+
+PoR, unconscious gravity, semantic resonance, entropic selection, AI future modeling
+
+
+---
+
 Project Status
-
-Version: UGHer v5.5 “Spacetime Masterpiece”
-
-Status: Experimental / Conceptual Prototype
-
 
 
 ---
@@ -102,14 +107,12 @@ MIT License © 2025 Yuu6798
 
 ---
 
-Contact / Collaboration
+Contact
 
-For academic use, AI research integration, or collaboration:
-→ Open an Issue or DM on X: @kkoo6798kamo
+For academic collaboration, AI alignment, or multi-AI simulation:
+@kkoo6798kamo
 
 ---
-
-
 
 
 
