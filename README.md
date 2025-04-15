@@ -112,6 +112,13 @@ For collaboration, questions, or theory integration:
 
 ---
 
+## PoR Phase Models (advanced_por_models.py)
+
+This file includes advanced mathematical functions such as:
+
+- `por_refire_difference(E1, E2)`: models re-firing differences
+- `phase_gradient(E, S)`: simulates expansion speed of PoR
+- `por_rate(t, λ)`: calculates PoR decay frequency over time
 
 
 
