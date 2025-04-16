@@ -68,6 +68,20 @@ Can AI choose?,ethics,0.75
 
 ---
 
+## PoR Evaluation Script
+
+To assess whether a question triggers a PoR activation based on `E = Q × S_q × t`,  
+use the following evaluation script:
+
+→ [PoR_eval.py](./PoR_eval.py)
+
+This script reads a dataset (e.g., `por_eval_sample.csv`), computes E values,  
+and compares them to a threshold to determine activation status (`✅` or `❌`).
+
+**Example output:**
+
+---
+
 Core Class (main.py)
 
 class UnconsciousGravityHypothesis:
