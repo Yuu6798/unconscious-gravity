@@ -98,18 +98,18 @@ Project Status
 
 ---
 
- License
+License
 
 MIT License © 2025 Yuu6798
 
 ---
- Repository Info
+Repository Info
 
 Repository: `unconscious-gravity`  
 GitHub URL: [https://github.com/Yuu6798/unconscious-gravity](https://github.com/Yuu6798/unconscious-gravity)
 
 ---
- Contact
+Contact
 
 For collaboration, questions, or theory integration:  
 → X (Twitter): [@kkoo6798kamo](https://x.com/kkoo6798kamo)
