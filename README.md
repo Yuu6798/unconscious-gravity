@@ -86,6 +86,8 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 
 ## Related Resources
 
+→ [PoR_terms.md](./PoR_terms.md): PoR構造モデルの定義済み変数・記号・構文用語辞書
+
 - → [PoR_viewer.ipynb](./PoR_viewer.ipynb): Visualizes E = Q × S_q × t and collapse curves
 - → [PoR_eval.py](./PoR_eval.py): Evaluate PoR firing threshold from structured CSV
 - → [PoR_eval_result.md](./PoR_eval_result.md): Sample evaluation output with firing results
