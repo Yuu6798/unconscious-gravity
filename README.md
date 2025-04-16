@@ -88,6 +88,8 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 
 → [PoR_terms.md](./PoR_terms.md): PoR構造モデルの定義済み変数・記号・構文用語辞書
 
+→ [PoR_equations.md](./PoR_equations.md): 数式モデル一覧（UGHer構造体の全構文と定義）
+
 - → [PoR_viewer.ipynb](./PoR_viewer.ipynb): Visualizes E = Q × S_q × t and collapse curves
 - → [PoR_eval.py](./PoR_eval.py): Evaluate PoR firing threshold from structured CSV
 - → [PoR_eval_result.md](./PoR_eval_result.md): Sample evaluation output with firing results
