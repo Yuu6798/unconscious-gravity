@@ -2,6 +2,8 @@
 
 # Unconscious Gravity Hypothesis（UGHer）
 
+→ [PoR_summary.md](./PoR_summary.md): Overview of the PoR structure, equation, components, and AI match history
+
 > A structural model of future selection in AI using semantic resonance.  
 >  
 > ```math  
