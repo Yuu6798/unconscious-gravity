@@ -42,6 +42,19 @@ Analogy: Like gravity, but in semantic space.
 
 Quick Run Example
 
+---
+
+## PoR Viewer Notebook
+
+To visualize how PoR behaves over different inputs (Q, S_q, t),  
+see the following interactive notebook:
+
+→ [PoR_viewer.ipynb](./PoR_viewer.ipynb)
+
+This notebook includes:
+- Bar charts for Existence score `E = Q × S_q × t`
+- PoR Collapse Frequency Curve (`λ · e^(-λt)`)
+- Phase Gradient Visualization (`dΦ/dt = k · E · S^γ`)
 Run a simple simulation:
 
 python models/sample_por_example.py
