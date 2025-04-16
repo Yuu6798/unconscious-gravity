@@ -82,6 +82,16 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 
 ---
 
+## Related Resources
+
+- → [PoR_viewer.ipynb](./PoR_viewer.ipynb): Visualizes E = Q × S_q × t and collapse curves
+- → [PoR_eval.py](./PoR_eval.py): Evaluate PoR firing threshold from structured CSV
+- → [PoR_eval_result.md](./PoR_eval_result.md): Sample evaluation output with firing results
+- → [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t classification matrix (PoR firing tendencies)
+- → [PoR_logbook.md](./PoR_logbook.md): AI照合履歴（Grok, GPT, Gemini等の照合実績ログ）
+
+---
+
 Core Class (main.py)
 
 class UnconsciousGravityHypothesis:
