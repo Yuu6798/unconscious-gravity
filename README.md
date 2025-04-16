@@ -90,6 +90,8 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 - → [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t classification matrix (PoR firing tendencies)
 - → [PoR_logbook.md](./PoR_logbook.md): AI照合履歴（Grok, GPT, Gemini等の照合実績ログ）
 
+→ [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t の照合空間マトリクス（PoR発火傾向分類）
+
 ---
 
 Core Class (main.py)
