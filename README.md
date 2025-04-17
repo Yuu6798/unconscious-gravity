@@ -114,6 +114,8 @@ python PoR_eval.py --input por_eval_sample.csv --threshold 0.5
 
 → [por_inference.py](./por_inference.py): BERTベースのPoR構造スコアリングと応答選択アルゴリズム
 
+→ [por_log_writer.py](./por_log_writer.py): PoRスコアと発火結果をJSONL形式でログ記録
+
 ---
 
 Core Class (main.py)
