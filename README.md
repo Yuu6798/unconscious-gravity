@@ -1,5 +1,4 @@
 
-
 # Unconscious Gravity Hypothesis（UGHer）
 
 → [PoR_summary.md](./PoR_summary.md): Overview of the PoR structure, equation, components, and AI match history
@@ -99,6 +98,8 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 → [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t の照合空間マトリクス（PoR発火傾向分類）
 
 → [UGHer_derivation.md](./UGHer_derivation.md): E = Q × S_q × t の構造的導出と意味的背景
+
+→ [PoR_input_spec.md](./PoR_input_spec.md): Q, S_q, t の入力スケーリング仕様と測定指針
 
 ---
 
