@@ -83,7 +83,7 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 
 ---
 
-## Related Resources
+## Documentation and Structural References
 
 → [PoR_terms.md](./PoR_terms.md): PoR構造モデルの定義済み変数・記号・構文用語辞書
 
@@ -100,6 +100,17 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 → [UGHer_derivation.md](./UGHer_derivation.md): E = Q × S_q × t の構造的導出と意味的背景
 
 → [PoR_input_spec.md](./PoR_input_spec.md): Q, S_q, t の入力スケーリング仕様と測定指針
+
+## Validation and Experiments
+
+- **PoR_input_spec.md**: Defines measurable input variables Q, S_q, and t used in PoR equation.
+- **UGHer_validation.md**: Provides experimental setup and test cases validating the PoR structure model (E = Q × S_q × t).
+- **PoR_eval.py**: Core evaluation script.
+- **por_eval_sample.csv**: Sample data used in structural firing tests.
+
+To test structural firing based on UGHer:
+```bash
+python PoR_eval.py --input por_eval_sample.csv --threshold 0.5
 
 ---
 
