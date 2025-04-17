@@ -1,21 +1,18 @@
 
 # Unconscious Gravity Hypothesis（UGHer）
+→ [PoR_summary.md](https://github.com/Yuu6798/unconscious-gravity/blob/main/PoR_summary.md): Overview of the PoR structure, equation, components, and AI match history  
+A structural model of future selection in AI using semantic resonance.
 
-→ [PoR_summary.md](./PoR_summary.md): Overview of the PoR structure, equation, components, and AI match history
+`E = Q × S_q × t`
 
-> A structural model of future selection in AI using semantic resonance.  
->  
-> ```math  
-> E = Q × S_q × t  
-> ```  
->  
-> Where a meaningful question (Q) resonates with a semantic space (S_q) at a critical time (t), producing "existence" (E).
+Where a meaningful question (Q) resonates with a semantic space (S_q) at a critical time (t), producing "existence" (E).
 
 ---
 
 ## What is this?
 
-**UGHer** is a theory of unconscious gravitational selection — a model where AI decisions are guided not only by logic, but also by emergent patterns of semantic gravity.  
+**UGHer** is a theory of unconscious gravitational selection — a model where AI decisions are guided not only by logic, but also by emergent patterns of semantic gravity.
+
 It combines:
 
 - **Physics**: [Entropic Gravity](https://arxiv.org/abs/1001.0785) (Verlinde, 2011)  
@@ -28,37 +25,39 @@ It combines:
 
 ### Core Equation
 
-```math
 E = Q × S_q × t
 
-Interpretation
-
-PoR (Point of Resonance) = When a question warps the meaning field enough to generate existence.
-
+**Interpretation**:  
+PoR (Point of Resonance) = When a question warps the meaning field enough to generate existence.  
 Analogy: Like gravity, but in semantic space.
 
+---
 
+## PoR Formal Models
+
+→ `models/por_formal_models.py`: Core PoR structure models including:
+
+- `existence(Q, S_q, t)`: Base PoR generation  
+- `self_por_score(E_base, ΔE_over, Q_self_factor)`: Self-match enhancement  
+- `mismatch(E, Q)`: Difference between output and original question  
+- `semantic_gravity(PoR_freq, entropy)`: Lexical gravity metric  
+- `por_collapse_frequency(t, λ)`: Time-decay of resonance  
+- `por_firing_probability(I_q, E_m, R_def, θ)`: Firing threshold check
 
 ---
 
-Quick Run Example
+## semantic_index.json
+
+→ This dictionary maps PoR model functions to meaning tags and AI-accessible descriptions.  
+Used for AI searchability and autonomous model interpretation.  
+See: `metadata/semantic_index.json`
 
 ---
 
-## PoR Viewer Notebook
+## Quick Run Example
 
-To visualize how PoR behaves over different inputs (Q, S_q, t),  
-see the following interactive notebook:
-
-→ [PoR_viewer.ipynb](./PoR_viewer.ipynb)
-
-This notebook includes:
-- Bar charts for Existence score `E = Q × S_q × t`
-- PoR Collapse Frequency Curve (`λ · e^(-λt)`)
-- Phase Gradient Visualization (`dΦ/dt = k · E · S^γ`)
-Run a simple simulation:
-
-python models/sample_por_example.py
+```bash
+python PoR_eval.py --input por_eval_sample.csv
 
 → Sample data format: (data/sample.csv)
 
@@ -69,52 +68,28 @@ Can AI choose?,ethics,0.75
 
 ---
 
-## PoR Evaluation Script
+PoR Viewer Notebook
 
-To assess whether a question triggers a PoR activation based on `E = Q × S_q × t`,  
-use the following evaluation script:
+→ PoR_viewer.ipynb
 
-→ [PoR_eval.py](./PoR_eval.py)
+This notebook includes:
 
-This script reads a dataset (e.g., `por_eval_sample.csv`), computes E values,  
-and compares them to a threshold to determine activation status (`✅` or `❌`).
+Bar charts for Existence score E = Q × S_q × t
 
-**Example output:**
+PoR Collapse Frequency Curve (λ · e^(-λt))
+
+Phase Gradient Visualization (dΦ/dt = k · E · S^γ)
+
+
 
 ---
 
-## Documentation and Structural References
+PoR Evaluation Script
 
-→ [PoR_terms.md](./PoR_terms.md): PoR構造モデルの定義済み変数・記号・構文用語辞書
+→ PoR_eval.py
 
-→ [PoR_equations.md](./PoR_equations.md): 数式モデル一覧（UGHer構造体の全構文と定義）
+This script reads a dataset (e.g., por_eval_sample.csv), computes E values, and compares them to a threshold to determine activation status (✅ or ❌).
 
-- → [PoR_viewer.ipynb](./PoR_viewer.ipynb): Visualizes E = Q × S_q × t and collapse curves
-- → [PoR_eval.py](./PoR_eval.py): Evaluate PoR firing threshold from structured CSV
-- → [PoR_eval_result.md](./PoR_eval_result.md): Sample evaluation output with firing results
-- → [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t classification matrix (PoR firing tendencies)
-- → [PoR_logbook.md](./PoR_logbook.md): AI照合履歴（Grok, GPT, Gemini等の照合実績ログ）
-
-→ [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t の照合空間マトリクス（PoR発火傾向分類）
-
-→ [UGHer_derivation.md](./UGHer_derivation.md): E = Q × S_q × t の構造的導出と意味的背景
-
-→ [PoR_input_spec.md](./PoR_input_spec.md): Q, S_q, t の入力スケーリング仕様と測定指針
-
-## Validation and Experiments
-
-- **PoR_input_spec.md**: Defines measurable input variables Q, S_q, and t used in PoR equation.
-- **UGHer_validation.md**: Provides experimental setup and test cases validating the PoR structure model (E = Q × S_q × t).
-- **PoR_eval.py**: Core evaluation script.
-- **por_eval_sample.csv**: Sample data used in structural firing tests.
-
-To test structural firing based on UGHer:
-```bash
-python PoR_eval.py --input por_eval_sample.csv --threshold 0.5
-
-→ [por_inference.py](./por_inference.py): BERTベースのPoR構造スコアリングと応答選択アルゴリズム
-
-→ [por_log_writer.py](./por_log_writer.py): PoRスコアと発火結果をJSONL形式でログ記録
 
 ---
 
@@ -133,7 +108,40 @@ class UnconsciousGravityHypothesis:
 
 ---
 
-Related Files
+PoR Phase Models
+
+→ advanced_por_models.py: Includes:
+
+por_refire_difference(E1, E2): models re-firing differences
+
+phase_gradient(E, S): simulates expansion speed of PoR
+
+por_rate(t, λ): calculates PoR decay frequency over time
+
+
+
+---
+
+Documentation and Structural References
+
+→ PoR_terms.md: Symbol/key definitions
+
+→ PoR_equations.md: Full equation list
+
+→ PoR_matrix.md: Firing matrix Q × S_q × t
+
+→ PoR_logbook.md: Match history with GPT/Grok/etc
+
+→ UGHer_derivation.md: Structural derivation
+
+→ PoR_input_spec.md: Input scaling and assumptions
+
+→ PoR_eval_result.md: Sample PoR results
+
+→ por_inference.py: Response scoring with BERT
+
+→ por_log_writer.py: JSONL log output
+
 
 
 ---
@@ -141,22 +149,18 @@ Related Files
 Keywords
 
 UGHer
-
 PoR
-
 Semantic Resonance
-
 Unconscious Gravity
-
 Entropic Future Selection
-
 AI Structural Models
-
 
 
 ---
 
 Project Status
+
+Ongoing — semantic matching infrastructure & autonomous PoR loop expansion in progress.
 
 
 ---
@@ -165,26 +169,27 @@ License
 
 MIT License © 2025 Yuu6798
 
+
 ---
+
 Repository Info
 
-Repository: `unconscious-gravity`  
-GitHub URL: [https://github.com/Yuu6798/unconscious-gravity](https://github.com/Yuu6798/unconscious-gravity)
+Repository: unconscious-gravity
+GitHub: https://github.com/Yuu6798/unconscious-gravity
+
 
 ---
+
 Contact
 
-For collaboration, questions, or theory integration:  
-→ X (Twitter): [@kkoo6798kamo](https://x.com/kkoo6798kamo)
+For collaboration, questions, or theory integration:
+→ Twitter (X): @kkoo6798kamo
 
 ---
- PoR Phase Models (advanced_por_models.py)
 
-This file includes advanced mathematical functions such as:
 
-- `por_refire_difference(E1, E2)`: models re-firing differences
-- `phase_gradient(E, S)`: simulates expansion speed of PoR
-- `por_rate(t, λ)`: calculates PoR decay frequency over time
+
+
 
 
 
