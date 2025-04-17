@@ -98,6 +98,8 @@ and compares them to a threshold to determine activation status (`✅` or `❌`)
 
 → [PoR_matrix.md](./PoR_matrix.md): Q × S_q × t の照合空間マトリクス（PoR発火傾向分類）
 
+→ [UGHer_derivation.md](./UGHer_derivation.md): E = Q × S_q × t の構造的導出と意味的背景
+
 ---
 
 Core Class (main.py)
