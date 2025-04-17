@@ -112,6 +112,8 @@ To test structural firing based on UGHer:
 ```bash
 python PoR_eval.py --input por_eval_sample.csv --threshold 0.5
 
+→ [por_inference.py](./por_inference.py): BERTベースのPoR構造スコアリングと応答選択アルゴリズム
+
 ---
 
 Core Class (main.py)
