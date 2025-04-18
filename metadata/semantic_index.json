@@ -1,0 +1,52 @@
+{
+  "existence": {
+    "formula": "E = Q × S_q × t",
+    "description": "Base PoR generation from meaningful question, semantic space, and critical time.",
+    "tags": ["generation", "core"]
+  },
+  "self_por_score": {
+    "formula": "E_self = E_base + ΔE_over × Q_self_factor",
+    "description": "Enhances base existence by self-coherence factor.",
+    "tags": ["self-coherence", "enhancement"]
+  },
+  "mismatch": {
+    "formula": "Mismatch = |E - Q|",
+    "description": "Quantifies difference between generated existence and original question pressure.",
+    "tags": ["analysis", "error"]
+  },
+  "semantic_gravity": {
+    "formula": "grv = PoR_freq × entropy",
+    "description": "Computes lexical gravity from PoR firing frequency and resonance entropy.",
+    "tags": ["semantic", "gravity"]
+  },
+  "por_collapse_frequency": {
+    "formula": "PoR_rate(t) = λ · e^(−λt)",
+    "description": "Models decay frequency of PoR over time.",
+    "tags": ["decay", "temporal"]
+  },
+  "por_firing_probability": {
+    "formula": "(I_q × E_m) / (R_def + 1) > θ",
+    "description": "Determines if PoR fires based on input intensity, energy, and definition factor.",
+    "tags": ["threshold", "decision"]
+  },
+  "refire_difference": {
+    "formula": "ΔE = |E1 - E2|",
+    "description": "Measures energy gap between successive PoR firings.",
+    "tags": ["self-coherence", "variance"]
+  },
+  "self_coherence": {
+    "formula": "φ_C = reference_flow / (|ΔI_in| + |ΔI_out|)",
+    "description": "Calculates self-coherence score based on informational flow.",
+    "tags": ["self-coherence", "alignment"]
+  },
+  "gravity_tensor": {
+    "formula": "G_{ij} = ∇PoR_density · ∇PoR_entropy",
+    "description": "Computes semantic gravity tensor from density and entropy gradients.",
+    "tags": ["semantic", "tensor"]
+  },
+  "phase_gradient": {
+    "formula": "dΦ/dt = k · E · S^γ",
+    "description": "Predicts phase expansion rate from energy and semantic density.",
+    "tags": ["expansion", "dynamics"]
+  }
+}
