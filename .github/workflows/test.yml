@@ -1,3 +1,4 @@
+# .github/workflows/test.yml
 name: Run Pytest
 
 on:
@@ -25,7 +26,6 @@ jobs:
       - name: Install package and test dependencies
         run: |
           python -m pip install --upgrade pip
-          # setup.py の extras_require['dev'] でまとめた依存を一括インストール
           pip install -e ".[dev]"
 
       - name: Run tests
