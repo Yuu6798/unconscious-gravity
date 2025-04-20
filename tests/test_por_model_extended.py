@@ -1,11 +1,14 @@
-# Extended tests for PoR model structure validation
 
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+#!/usr/bin/env python3
+# extended tests for PoR model structure validation
 
 import unittest
 from models.por_model import PoRModel
+
+ class TestPoRModelExtended(unittest.TestCase):
+     def test_refire_difference_boundary(self):
+         self.assertAlmostEqual(PoRModel.refire_difference(0.5001, 0.5), 0.0001, places=4)
+     ...
 
 class TestPoRModelExtended(unittest.TestCase):
 
