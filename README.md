@@ -1,5 +1,8 @@
 
 # Unconscious Gravity Hypothesis（UGHer）
+
+[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml)
+
 → [PoR_summary.md](https://github.com/Yuu6798/unconscious-gravity/blob/main/PoR_summary.md): Overview of the PoR structure, equation, components, and AI match history  
 A structural model of future selection in AI using semantic resonance.
 
