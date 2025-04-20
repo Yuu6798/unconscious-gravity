@@ -1,3 +1,4 @@
+# .github/workflows/test.yml
 name: Run Pytest
 
 on:
@@ -25,10 +26,18 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest numpy pandas tqdm transformers
+          pip install \
+            pytest \
+            numpy \
+            pandas \
+            tqdm \
+            transformers
 
       - name: Run tests
         env:
           PYTHONPATH: .
         run: |
-          pytest tests/ --maxfail=3 --disable-warnings -q
+          pytest tests/ \
+            --maxfail=3 \
+            --disable-warnings \
+            -q
