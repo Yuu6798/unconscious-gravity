@@ -1,4 +1,7 @@
-import math import numpy as np from typing import List, Optional, Union from transformers import pipeline
+import math 
+import numpy as np 
+from typing import List, Optional, Union 
+from transformers import pipeline
 
 class PoRModel: """ Core PoR (Point of Resonance) model calculations. """
 
