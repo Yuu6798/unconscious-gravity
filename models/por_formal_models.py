@@ -44,14 +44,19 @@ class PoRModel:
     ) -> float:
         """
         位相勾配。
-        2 引数版: k × S,
-        4 引数版: k × E × S^γ
+        ・2 引数版: E × S
+        ・3 引数版: k × S
+        ・4 引数版: k × E × S^γ
         """
         # エントロピー S が負ならエラー
         if S < 0:
             raise ValueError("entropy must be non-negative")
 
         # 2 引数版
+        if k is None and gamma is None:
+            return E * S
+
+        # 3 引数版
         if k is not None and gamma is None:
             return k * S
 
@@ -59,8 +64,8 @@ class PoRModel:
         if k is not None and gamma is not None:
             return k * E * (S ** gamma)
 
-        # 引数不足
-        raise TypeError("must supply k (and optionally gamma)")
+        # その他（引数の組み合わせエラー）
+        raise TypeError("invalid arguments for phase_gradient")
 
     @staticmethod
     def gravity_tensor(
@@ -88,8 +93,10 @@ class PoRModel:
         進化指数: 各時間ステップにおける重力テンソルの差を合計
         """
         values = [
-            PoRModel.gravity_tensor([por_freqs[i], por_freqs[i+1]],
-                                    [entropies[i], entropies[i+1]])
+            PoRModel.gravity_tensor(
+                [por_freqs[i], por_freqs[i+1]],
+                [entropies[i], entropies[i+1]]
+            )
             for i in range(len(time_steps)-1)
         ]
         return sum(values)
@@ -135,7 +142,8 @@ class PoRModel:
     @staticmethod
     def is_por_structure(output: str) -> bool:
         """
-        PoR 構造が検出されたか判定（semantic, gravity, resonance の3語をすべて含む）
+        PoR 構造が検出されたか判定
+        (semantic, gravity, resonance の3語がすべて含まれるか)
         """
-        tokens = output.lower().split()
-        return all(w in tokens for w in ["semantic", "gravity", "resonance"])
+        text = output.lower()
+        return all(word in text for word in ["semantic", "gravity", "resonance"])
