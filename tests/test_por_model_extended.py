@@ -1,4 +1,8 @@
-# Add test_por_model_extended.py: extended tests for PoR model structure validation
+# Extended tests for PoR model structure validation
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import unittest
 from models.por_model import PoRModel
