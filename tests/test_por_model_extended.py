@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import sys
 import os
-# testsフォルダのひとつ上（リポジトリ直下）をパスに追加
+import math
+
+# testsフォルダのひとつ上 (リポジトリ直下) をパスに追加
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import unittest
@@ -18,16 +20,16 @@ class TestPoRModelExtended(unittest.TestCase):
         )
 
     def test_phase_gradient_boundary(self):
-        """位相勾配の 2 引数版・境界チェック"""
-        # signature: phase_gradient(E, S) の場合
+        """位相勾配の引数エラー＆境界チェック"""
+        # k=1.0, S=0.5, gamma=1.0 の正常値
         self.assertAlmostEqual(
-            PoRModel.phase_gradient(1.0, 0.5, k=None, gamma=None),
-            1.0 * 0.5,
+            PoRModel.phase_gradient(1.0, 0.5, k=1.0, gamma=1.0),
+            1.0 * 0.5 * (1.0 ** 1.0),
             delta=1e-6
         )
-        # signature: phase_gradient(k, S) の場合 (k=0.5, S=0.0 → 0.0)
+        # S=0 のとき 0 になること
         self.assertAlmostEqual(
-            PoRModel.phase_gradient(0.0, 1.0, k=0.5, gamma=None),
+            PoRModel.phase_gradient(1.0, 0.0, k=0.5, gamma=1.0),
             0.0,
             delta=1e-6
         )
@@ -38,13 +40,13 @@ class TestPoRModelExtended(unittest.TestCase):
             PoRModel.self_coherence(0.5, 0.0, 0.0)
 
     def test_collapse_frequency_boundary(self):
-        """λ=0.5, t=0.5 として λ·e^(−λt)=0.5*e^(−0.25) をチェック"""
+        """λ=0.5, t=0.5 で λ·e^(−λt)=0.5*e^(−0.25) をチェック"""
         r = PoRModel.por_collapse_frequency(0.5, 0.5)
-        expected = 0.5 * 2.71828**(-0.25)
+        expected = 0.5 * math.exp(-0.25)
         self.assertAlmostEqual(r, expected, delta=0.01)
 
     def test_null_detection(self):
-        """PoR 構造検出メソッドの正負を確認"""
+        """PoR構造検出メソッドの正負を確認"""
         output_pos = "semantic gravity resonance was detected"
         output_neg = "this is generic output"
         self.assertTrue(PoRModel.is_por_structure(output_pos))
@@ -53,9 +55,9 @@ class TestPoRModelExtended(unittest.TestCase):
     def test_invalid_input_eval(self):
         """位相勾配メソッドの型エラーを確認"""
         with self.assertRaises(TypeError):
-            PoRModel.phase_gradient("high", 0.5)
+            PoRModel.phase_gradient("high", 0.5, k=1.0, gamma=1.0)
         with self.assertRaises(TypeError):
-            PoRModel.phase_gradient(0.5, None)
+            PoRModel.phase_gradient(0.5, None, k=1.0, gamma=1.0)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
