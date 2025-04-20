@@ -44,9 +44,9 @@ class PoRModel:
     ) -> float:
         """
         Phase gradient:
-        - 2-arg: E × S
-        - 3-arg: k × S
-        - 4-arg: k × E × S^γ
+        - 2 引数版: E × S
+        - 3 引数版: k × S
+        - 4 引数版: k × E × S^γ
         """
         if S < 0:
             raise ValueError("entropy must be non-negative")
@@ -83,7 +83,7 @@ class PoRModel:
     ) -> float:
         """
         Self coherence = ref_flow / (d_in + d_out)
-        ZeroDivisionError を発生させるため、d_in+d_out==0 の場合は例外が投出されます。
+        ZeroDivisionError を発生させるため、d_in + d_out == 0 の場合は例外が投出されます。
         """
         return ref_flow / (d_in + d_out)
 
