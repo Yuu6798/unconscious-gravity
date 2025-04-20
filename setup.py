@@ -6,17 +6,19 @@ setup(
     version="0.1.0",
     description="Monte Carlo simulator and formal models for Point of Resonance (PoR)",
     packages=find_packages(),  # models と metadata を自動で探してくれます
+
     install_requires=[
         "numpy",
         "pandas",
         "tqdm",
         "transformers",
     ],
-    extras_require={  # 追加
+    extras_require={
         "dev": [
             "pytest",
-            # 開発／テストに必要なパッケージをここにまとめる
-        ]
+            # ここにテスト／開発用のパッケージを追加していく
+        ],
     },
+
     python_requires=">=3.10",
 )
