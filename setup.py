@@ -5,7 +5,7 @@ setup(
     name="unconscious_gravity",
     version="0.1.0",
     description="Monte Carlo simulator and formal models for Point of Resonance (PoR)",
-    packages=find_packages(),  # models と metadata パッケージを自動で見つけてくれます
+    packages=find_packages(),  # models と metadata を自動で探します
     install_requires=[
         "numpy",
         "pandas",
