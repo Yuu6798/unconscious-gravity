@@ -1,4 +1,3 @@
-# setup.py
 from setuptools import setup, 
 find_packages
 
@@ -13,5 +12,11 @@ setup(
         "tqdm",
         "transformers",
     ],
+    extras_require={  # 追加
+        "dev": [
+            "pytest",
+            # 開発／テストに必要なパッケージをここにまとめる
+        ]
+    },
     python_requires=">=3.10",
 )
