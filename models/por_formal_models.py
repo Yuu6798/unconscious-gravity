@@ -2,7 +2,7 @@
 
 import math
 import numpy as np
-from typing import List, Optional, Union
+from typing import List, Union
 
 class PoRModel:
     """Core PoR (Point of Resonance) model calculations."""
@@ -28,10 +28,11 @@ class PoRModel:
         return por_freq * entropy
 
     @staticmethod
-    def por_collapse_frequency(lam: float, t: float) -> float:
+    def por_collapse_frequency(t: float, lam: float) -> float:
         """
         Collapse frequency:
           λ · e^(−λ·t)
+        引数は (経過時間 t, 崩壊率 λ) の順です。
         """
         return lam * math.exp(-lam * t)
 
@@ -44,12 +45,10 @@ class PoRModel:
     def self_coherence(ref_flow: float, d_in: float, d_out: float) -> float:
         """
         Self coherence:
-          ref_flow / (d_in + d_out), or 0 if there is no flow
+          ref_flow / (d_in + d_out), or 0 if denominator is zero.
         """
         total = d_in + d_out
-        if total == 0:
-            return 0.0
-        return ref_flow / total
+        return 0.0 if total == 0 else ref_flow / total
 
     @staticmethod
     def gravity_tensor(vec: List[float], weights: List[float]) -> float:
@@ -59,9 +58,9 @@ class PoRModel:
     @staticmethod
     def phase_gradient(*args) -> float:
         """
-        Phase gradient calculation.
-        - 2 args: phase_gradient(a, b) = a × b
-        - 4 args: phase_gradient(E, S, k, γ) = k × E × S**γ
+        Phase gradient:
+        - 2引数の場合: phase_gradient(a, b) = a × b
+        - 4引数の場合: phase_gradient(E, S, k, γ) = k × E × S**γ
         """
         if len(args) == 2:
             a, b = args
@@ -72,13 +71,13 @@ class PoRModel:
                 raise TypeError("S must be a number")
             if S < 0:
                 raise ValueError("S must be non-negative")
-            return k * E * S**gamma
+            return k * E * (S ** gamma)
         raise TypeError("phase_gradient() expects either 2 or 4 arguments")
 
     @staticmethod
     def evolution_index(Q_list: List[float], S_list: List[float], t_list: List[float]) -> float:
         """
-        Evolution index: sum over i of (Q_i × S_i × t_i)
+        Evolution index: sum_i (Q_i × S_i × t_i)
         """
         Q = np.array(Q_list)
         S = np.array(S_list)
@@ -105,10 +104,7 @@ class PoRModel:
     def is_por_structure(text: str) -> bool:
         """
         Returns True if PoR–related keywords appear in text.
-        Default keywords: "por", "resonance"
+        デフォルトでは "por" と "resonance" を探します。
         """
         low = text.lower()
-        for kw in ("por", "resonance"):
-            if kw in low:
-                return True
-        return False
+        return any(kw in low for kw in ("por", "resonance"))
