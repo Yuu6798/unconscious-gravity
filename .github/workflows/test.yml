@@ -2,19 +2,16 @@ name: Run Pytest
 
 on:
   push:
-    # テスト対象のファイル・フォルダを限定
     paths:
-      - 'unconscious-gravity/**'
+      - 'models/**'
+      - 'tests/**'
+      - '.github/workflows/test.yml'
   pull_request:
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    # このディレクトリを「作業ルート」として扱う
-    defaults:
-      run:
-        working-directory: ./unconscious-gravity
 
     steps:
       - name: Checkout code
@@ -31,8 +28,8 @@ jobs:
           pip install pytest
 
       - name: Run tests with pytest
-        # models/ や tests/ をモジュールとして認識させる
         env:
-          PYTHONPATH: ${{ github.workspace }}/unconscious-gravity
+          # ルートをモジュール検索パスに追加
+          PYTHONPATH: ${{ github.workspace }}
         run: |
           pytest tests/ --maxfail=3 --disable-warnings -q
