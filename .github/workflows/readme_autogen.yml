@@ -1,0 +1,41 @@
+name: Auto Generate README
+
+on:
+  push:
+    paths:
+      - 'metadata/semantic_index.json'
+      - 'scripts/generate_readme.py'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+
+      - name: Run README Generator
+        run: |
+          python scripts/generate_readme.py
+
+      - name: Move to main README
+        run: |
+          mv README.generated.md README.md
+
+      - name: Commit and push README.md
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "Auto-update README from semantic_index.json" || echo "No changes to commit"
+          git push
