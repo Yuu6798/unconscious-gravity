@@ -1,15 +1,16 @@
+#!/usr/bin/env python3
 import sys
 import os
+# tests フォルダのひとつ上（リポジトリ直下）をパスに追加
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import unittest
 from models.por_model import PoRModel
 
 class TestPoRModel(unittest.TestCase):
-
     def test_refire_difference(self):
         self.assertEqual(PoRModel.refire_difference(10.0, 8.5), 1.5)
-
+    
     def test_self_coherence(self):
         result = PoRModel.self_coherence(1.0, 0.5, 0.3)
         self.assertAlmostEqual(result, 1.0 / (0.5 + 0.3), places=4)
