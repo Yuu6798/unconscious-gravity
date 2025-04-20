@@ -1,7 +1,8 @@
+# models/por_formal_models.py
+
 import math
 import numpy as np
 from typing import List, Optional, Union
-from transformers import pipeline
 
 class PoRModel:
     """Core PoR (Point of Resonance) model calculations."""
@@ -27,62 +28,87 @@ class PoRModel:
         return por_freq * entropy
 
     @staticmethod
-    def por_collapse_frequency(t: float, lam: float) -> float:
-        """Collapse frequency: lam × exp(-lam × t)"""
+    def por_collapse_frequency(lam: float, t: float) -> float:
+        """
+        Collapse frequency:
+          λ · e^(−λ·t)
+        """
         return lam * math.exp(-lam * t)
 
     @staticmethod
-    def phase_gradient(*args) -> float:
-        """
-        二つのシグネチャをサポート:
-          1) phase_gradient(k, E) → k × E
-          2) phase_gradient(E, S, k, gamma) → k × E × S**gamma
-        """
-        if len(args) == 2:
-            k, E = args
-            return k * E
-        if len(args) == 4:
-            E, S, k, gamma = args
-            return k * E * (S ** gamma)
-        raise TypeError("phase_gradient requires 2 or 4 arguments")
-
-    @staticmethod
-    def gravity_tensor(values: List[float], weights: List[float]) -> float:
-        """Dot product of values and weights"""
-        if len(values) != len(weights):
-            raise ValueError("values and weights must have same length")
-        return sum(v * w for v, w in zip(values, weights))
-
-    @staticmethod
-    def refire_difference(current: float, previous: float) -> float:
-        """Difference between current and previous refire times"""
-        return current - previous
+    def refire_difference(new_refire: float, old_refire: float) -> float:
+        """Difference in refire rates/times."""
+        return abs(new_refire - old_refire)
 
     @staticmethod
     def self_coherence(ref_flow: float, d_in: float, d_out: float) -> float:
         """
-        Compute self-coherence as ref_flow / (d_in + d_out),
-        if denominator is zero, return 0.0
+        Self coherence:
+          ref_flow / (d_in + d_out), or 0 if there is no flow
         """
-        denom = d_in + d_out
-        if denom == 0:
+        total = d_in + d_out
+        if total == 0:
             return 0.0
-        return ref_flow / denom
+        return ref_flow / total
+
+    @staticmethod
+    def gravity_tensor(vec: List[float], weights: List[float]) -> float:
+        """Compute gravity tensor as dot product of two vectors."""
+        return float(np.dot(np.array(vec), np.array(weights)))
+
+    @staticmethod
+    def phase_gradient(*args) -> float:
+        """
+        Phase gradient calculation.
+        - 2 args: phase_gradient(a, b) = a × b
+        - 4 args: phase_gradient(E, S, k, γ) = k × E × S**γ
+        """
+        if len(args) == 2:
+            a, b = args
+            return a * b
+        if len(args) == 4:
+            E, S, k, gamma = args
+            if not isinstance(S, (int, float)):
+                raise TypeError("S must be a number")
+            if S < 0:
+                raise ValueError("S must be non-negative")
+            return k * E * S**gamma
+        raise TypeError("phase_gradient() expects either 2 or 4 arguments")
 
     @staticmethod
     def evolution_index(Q_list: List[float], S_list: List[float], t_list: List[float]) -> float:
-        """Sum of existence scores across lists: Σ (Q × S × t)"""
-        if not (len(Q_list) == len(S_list) == len(t_list)):
-            raise ValueError("Input lists must have same length")
-        return sum(Q * S * t for Q, S, t in zip(Q_list, S_list, t_list))
+        """
+        Evolution index: sum over i of (Q_i × S_i × t_i)
+        """
+        Q = np.array(Q_list)
+        S = np.array(S_list)
+        t = np.array(t_list)
+        return float(np.sum(Q * S * t))
 
     @staticmethod
-    def is_por_null(output: str, tags: List[str]) -> bool:
-        """Detect a 'null' PoR output from text or tags."""
-        txt = output.strip().lower()
-        if txt.startswith("no") or txt.startswith("null"):
-            return True
-        lower_tags = [t.lower() for t in tags]
-        if "por" in lower_tags or "resonance" in lower_tags:
-            return True
+    def por_firing_probability(I_q: float, E_m: float, R_def: float, theta: float) -> bool:
+        """
+        Firing probability condition:
+          True if (I_q × E_m − R_def) ≥ theta
+        """
+        return (I_q * E_m - R_def) >= theta
+
+    @staticmethod
+    def is_por_null(text: str, keywords: List[str]) -> bool:
+        """
+        Returns True if none of the keywords appear in text.
+        """
+        low = text.lower()
+        return not any(kw.lower() in low for kw in keywords)
+
+    @staticmethod
+    def is_por_structure(text: str) -> bool:
+        """
+        Returns True if PoR–related keywords appear in text.
+        Default keywords: "por", "resonance"
+        """
+        low = text.lower()
+        for kw in ("por", "resonance"):
+            if kw in low:
+                return True
         return False
