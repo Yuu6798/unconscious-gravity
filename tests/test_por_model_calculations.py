@@ -1,17 +1,25 @@
+#!/usr/bin/env python3
 import sys
 import os
+# tests フォルダのひとつ上（リポジトリ直下）をパスに追加
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import pytest import numpy as np import math
+import pytest
+import numpy as np
+import math
 
-from models.por_formal_models import PoRModel from metadata.semantic_index import semantic_index  # if needed for tags from typing import List
+from models.por_formal_models import PoRModel
+from metadata.semantic_index import semantic_index
 
-Assuming PoRModelCalculations logic is in models/por_formal_models.py
-
-and methods have same names as listed in semantic_index.json
-
-class TestPoRModelCalculations: @pytest.mark.parametrize("Q,S_q,t,expected", [ (2.0, 3.0, 4.0, 24.0), (1.5, 1.5, 1.5, 3.375), (0.0, 5.0, 10.0, 0.0) ]) def test_existence(self, Q: float, S_q: float, t: float, expected: float): assert math.isclose(PoRModel.existence(Q, S_q, t), expected, rel_tol=1e-9)
-
+class TestPoRModelCalculations:
+    @pytest.mark.parametrize("Q,S_q,t,expected", [
+        (2.0, 3.0, 4.0, 24.0),
+        (1.5, 1.5, 1.5, 3.375),
+        (0.0, 5.0, 10.0, 0.0),
+    ])
+    def test_existence(self, Q: float, S_q: float, t: float, expected: float):
+        assert math.isclose(PoRModel.existence(Q, S_q, t), expected, rel_tol=1e-9)
+    
 @pytest.mark.parametrize("E_base,delta,Q_self,expected", [
     (10.0, 2.0, 0.5, 11.0),
     (0.0, 5.0, 1.0, 5.0)
