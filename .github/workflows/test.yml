@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'models/**'
-      - 'metadata/**'
       - 'tests/**'
       - '.github/workflows/test.yml'
   pull_request:
@@ -26,8 +25,8 @@ jobs:
       - name: Install package and test dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e .          # = pip install -e .[dev] みたいに、setup.py をインストール
-          pip install pytest
+          # setuptools の extras_require で dev 用パッケージをまとめる
+          pip install -e ".[dev]"
 
       - name: Run tests
         run: |
