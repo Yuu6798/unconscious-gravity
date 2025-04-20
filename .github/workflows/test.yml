@@ -29,7 +29,6 @@ jobs:
 
       - name: Run tests with pytest
         env:
-          # ルートをモジュール検索パスに追加
           PYTHONPATH: ${{ github.workspace }}
         run: |
           pytest tests/ --maxfail=3 --disable-warnings -q
