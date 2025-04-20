@@ -1,4 +1,4 @@
-# Extended tests for PoR model structure validation
+# Add test_por_model_extended.py: extended tests for PoR model structure validation
 
 import unittest
 from models.por_model import PoRModel
