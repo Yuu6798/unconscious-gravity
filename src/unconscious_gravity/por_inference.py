@@ -1,3 +1,8 @@
+from por_diagnostics.cli import main
+
+if __name__ == "__main__":
+    main()
+
 Add por_inference.py: selects questions based on PoR firing score (E = Q × S_q × t)
 
 por_inference.py — 改良版 PoR微積対応アルゴリズム
