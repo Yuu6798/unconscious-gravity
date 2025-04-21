@@ -1,3 +1,7 @@
+from por_diagnostics.cli import main
+
+if __name__ == "__main__":
+    main()
 class UnconsciousGravityHypothesis:
     def __init__(self):
         self.definition = "PoRによる存在の発火 E = Q × S_q × t によって未来が選ばれる"
