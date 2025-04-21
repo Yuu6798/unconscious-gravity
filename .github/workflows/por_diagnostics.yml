@@ -1,0 +1,43 @@
+name: PoR Diagnostics
+
+on:
+  push:
+    paths:
+      - 'por_diagnostics/**'
+      - 'tests/**'
+      - 'por_eval_result.md'
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install pytest
+
+      - name: Run tests
+        run: pytest
+
+      - name: Generate PoR Diagnostic Report
+        run: |
+          python - << 'EOF'
+import pathlib
+from por_diagnostics.diagnostic import PoRDiagnostic
+
+# Adjust 'logs' to your actual log directory
+PoRDiagnostic(pathlib.Path('logs')).run(pathlib.Path('.'))
+EOF
+
+      - name: Commit updated report
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Update PoR evaluation report'
+          file_pattern: 'por_eval_result.md'
