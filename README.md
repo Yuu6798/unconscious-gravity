@@ -167,5 +167,4 @@ For collaboration, questions, or theory integration:
 
 ---
 
-どう？
 
