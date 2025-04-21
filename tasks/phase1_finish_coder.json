@@ -1,0 +1,26 @@
+{
+  "agent": "coder_gpt",
+  "objective": "Phase‑1 の残タスク（テスト・README・パッケージ初期化）を完了し、ロガー基盤を確定させる",
+  "dependencies": [
+    "src/unconscious_gravity_exp/logger.py",
+    "examples/dummy_dialog.py"
+  ],
+  "actions": [
+    {
+      "step": 5,
+      "cmd": "create tests/test_logger.py — dummy_dialog.py 実行後に data/sample_dialog.parquet が存在し、行数=10 かつ TurnLog スキーマが一致することを pytest で検証",
+      "expected_output": "tests/test_logger.py"
+    },
+    {
+      "step": 6,
+      "cmd": "update README.md に『Quick‑start (logger)』セクションを追加し、① Poetry install ➜ ② dummy_dialog.py 実行 ➜ ③ parquet 確認 の4行コード例を記載",
+      "expected_output": "README.md patch"
+    },
+    {
+      "step": 7,
+      "cmd": "create src/unconscious_gravity_exp/__init__.py で TurnLog と Logger を import して公開 (__all__ = ['TurnLog', 'Logger'])",
+      "expected_output": "src/unconscious_gravity_exp/__init__.py"
+    }
+  ],
+  "deliver_to": "./"
+}
