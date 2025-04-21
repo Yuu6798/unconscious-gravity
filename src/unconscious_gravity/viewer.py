@@ -1,3 +1,7 @@
+from por_diagnostics.cli import main
+
+if __name__ == "__main__":
+    main()
 class PoRViewer:
     """
     PoRの照合結果・構造・状態を視覚的に表示するクラス。
