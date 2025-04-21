@@ -1,0 +1,10 @@
+# Python bytecode
+**/__pycache__/
+*.py[cod]
+
+# pip wheel キャッシュ／ビルド成果物
+*.egg-info/
+
+# テスト用ログや出力
+sample_logs/
+output/
