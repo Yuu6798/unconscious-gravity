@@ -12,9 +12,11 @@ class PoRModel:
         return Q * S_q * t
 
     @staticmethod
-    def self_por_score(E_base: float,
-                       delta_E_over: float,
-                       Q_self_factor: float) -> float:
+    def self_por_score(
+        E_base: float,
+        delta_E_over: float,
+        Q_self_factor: float
+    ) -> float:
         """E_self = E_base + ΔE_over × Q_self_factor"""
         return E_base + delta_E_over * Q_self_factor
 
@@ -34,11 +36,12 @@ class PoRModel:
         return lam * math.exp(-lam * t)
 
     @staticmethod
-    def phase_gradient(E: float,
-                       S: float,
-                       k: Optional[float] = None,
-                       gamma: Optional[float] = None
-                       ) -> float:
+    def phase_gradient(
+        E: float,
+        S: float,
+        k: Optional[float] = None,
+        gamma: Optional[float] = None
+    ) -> float:
         """
         Phase gradient:
         - 2-arg: E × S
@@ -48,24 +51,25 @@ class PoRModel:
         if S < 0:
             raise ValueError("entropy must be non-negative")
 
-        # 2-arg
+        # 2-arg version
         if k is None and gamma is None:
             return E * S
 
-        # 3-arg
+        # 3-arg version
         if k is not None and gamma is None:
             return k * S
 
-        # 4-arg
+        # 4-arg version
         if k is not None and gamma is not None:
             return k * E * (S ** gamma)
 
         raise TypeError("invalid arguments for phase_gradient")
 
     @staticmethod
-    def gravity_tensor(por_freqs: List[float],
-                       entropies: List[float]
-                       ) -> float:
+    def gravity_tensor(
+        por_freqs: List[float],
+        entropies: List[float]
+    ) -> float:
         """Gravity tensor: Σ por_freq[i] × entropy[i]"""
         return sum(f * s for f, s in zip(por_freqs, entropies))
 
@@ -75,17 +79,24 @@ class PoRModel:
         return abs(new_val - old_val)
 
     @staticmethod
-    def self_coherence(ref_flow: float,
-                       d_in: float,
-                       d_out: float) -> float:
+    def self_coherence(
+        ref_flow: float,
+        d_in: float,
+        d_out: float
+    ) -> float:
         """Self coherence = ref_flow / (d_in + d_out)"""
-        return ref_flow / (d_in + d_out)
+        denom = d_in + d_out
+        if denom == 0:
+            raise ZeroDivisionError("d_in + d_out must not be zero")
+        return ref_flow / denom
 
     @staticmethod
-    def por_firing_probability(I_q: float,
-                               E_m: float,
-                               R_def: float,
-                               theta: float) -> bool:
+    def por_firing_probability(
+        I_q: float,
+        E_m: float,
+        R_def: float,
+        theta: float
+    ) -> bool:
         """
         Firing if (I_q * E_m / R_def) > theta.
         If R_def == 0, returns False.
@@ -95,9 +106,11 @@ class PoRModel:
         return (I_q * E_m / R_def) > theta
 
     @staticmethod
-    def evolution_index(Q_list: List[float],
-                        S_list: List[float],
-                        t_list: List[float]) -> float:
+    def evolution_index(
+        Q_list: List[float],
+        S_list: List[float],
+        t_list: List[float]
+    ) -> float:
         """Evolution index = Σ Q_i × S_i × t_i"""
         return sum(q * s * t for q, s, t in zip(Q_list, S_list, t_list))
 
