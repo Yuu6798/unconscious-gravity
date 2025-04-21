@@ -7,6 +7,9 @@ on:
       - 'scripts/generate_readme.py'
   workflow_dispatch:
 
+permissions:
+  contents: write  # コミット＆プッシュに必要
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # GITHUB_TOKEN を利用
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -22,7 +27,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
+          # ここに README 生成に必要なライブラリを追加
+          pip install -r requirements.txt
 
       - name: Run README Generator
         run: |
@@ -33,9 +40,11 @@ jobs:
           mv README.generated.md README.md
 
       - name: Commit and push README.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "Auto-update README from semantic_index.json" || echo "No changes to commit"
+          git diff --quiet && echo "No changes to commit" || git commit -m "Auto-update README from semantic_index.json"
           git push
