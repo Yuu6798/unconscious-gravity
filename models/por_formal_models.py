@@ -51,15 +51,15 @@ class PoRModel:
         if S < 0:
             raise ValueError("entropy must be non-negative")
 
-        # 2-arg version
+        # 2-arg version: E × S
         if k is None and gamma is None:
             return E * S
 
-        # 3-arg version
+        # 3-arg version: k × S
         if k is not None and gamma is None:
             return k * S
 
-        # 4-arg version
+        # 4-arg version: k × E × S^γ
         if k is not None and gamma is not None:
             return k * E * (S ** gamma)
 
