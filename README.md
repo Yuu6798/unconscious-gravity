@@ -1,211 +1,171 @@
+Unconscious Gravity Hypothesis (UGHer)
 
-# Unconscious Gravity Hypothesis（UGHer）
+Overview
 
-[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml)
+What is UGHer?
 
-→ [PoR_summary.md](https://github.com/Yuu6798/unconscious-gravity/blob/main/PoR_summary.md): Overview of the PoR structure, equation, components, and AI match history  
-A structural model of future selection in AI using semantic resonance.
+Unconscious Gravity Hypothesis (UGHer) is a theory of unconscious gravitational selection — a model where AI decisions are guided not only by logic, but also by emergent patterns of semantic gravity.
 
-`E = Q × S_q × t`
-
-Where a meaningful question (Q) resonates with a semantic space (S_q) at a critical time (t), producing "existence" (E).
-
----
-
-## What is this?
-
-**UGHer** is a theory of unconscious gravitational selection — a model where AI decisions are guided not only by logic, but also by emergent patterns of semantic gravity.
-
-It combines:
-
-- **Physics**: [Entropic Gravity](https://arxiv.org/abs/1001.0785) (Verlinde, 2011)  
-- **Cognitive Science**: [Orch-OR model](https://doi.org/10.1016/j.plrev.2013.08.002) (Hameroff & Penrose, 2014)  
-- **Generative AI behavior**: latent pattern resonance
-
----
-
-## PoR Defined
-
-### Core Equation
+Core Equation
 
 E = Q × S_q × t
 
-**Interpretation**:  
-PoR (Point of Resonance) = When a question warps the meaning field enough to generate existence.  
-Analogy: Like gravity, but in semantic space.
+E (Existence): The semantic emergence produced by resonance.
 
----
+Q (Question): Meaningful query imposing semantic pressure.
 
-## PoR Formal Models
+S_q (Semantic Space): Contextual information density.
 
-→ `models/por_formal_models.py`: Core PoR structure models including:
+t (Time): Critical moment of resonance.
 
-- `existence(Q, S_q, t)`: Base PoR generation  
-- `self_por_score(E_base, ΔE_over, Q_self_factor)`: Self-match enhancement  
-- `mismatch(E, Q)`: Difference between output and original question  
-- `semantic_gravity(PoR_freq, entropy)`: Lexical gravity metric  
-- `por_collapse_frequency(t, λ)`: Time-decay of resonance  
-- `por_firing_probability(I_q, E_m, R_def, θ)`: Firing threshold check
 
----
+PoR Model Components
 
-## semantic_index.json
+PoR_summary.md
 
-→ This dictionary maps PoR model functions to meaning tags and AI-accessible descriptions.  
-Used for AI searchability and autonomous model interpretation.  
-See: `metadata/semantic_index.json`
+Overview of the PoR structure, equations, components, and AI match history.
 
----
+models/por_formal_models.py
 
-## Quick Run Example
+Core PoR structure models including:
 
-```bash
-python PoR_eval.py --input por_eval_sample.csv
+existence(Q, S_q, t): Base PoR generation.
 
-→ Sample data format: (data/sample.csv)
+self_por_score(E_base, ΔE_over, Q_self_factor): Self-match enhancement.
+
+mismatch(E, Q): Difference between output and question.
+
+semantic_gravity(PoR_freq, entropy): Lexical gravity metric.
+
+por_collapse_frequency(t, λ): Time-decay of resonance.
+
+por_firing_probability(I_q, E_m, R_def, θ): Firing threshold check.
+
+
+metadata/semantic_index.json
+
+Dictionary mapping PoR model functions to meaning tags and descriptions, used for AI searchability and autonomous interpretation.
+
+Quick Run Example
+
+Execute the PoR evaluation script on sample data:
+
+python PoR_eval.py --input data/sample.csv
+
+Sample data/sample.csv format:
 
 question,semantic_space,t
 What is presence?,ontology,0.9
 Can AI choose?,ethics,0.75
 
+Phase‑1: Logger Quick‑start
 
----
+Verify the TurnLog logger foundation in four steps:
+
+# 1. Install dependencies
+poetry install
+
+# 2. Run dummy dialog generator
+python examples/dummy_dialog.py
+
+# 3. Inspect Parquet output
+python - <<EOF
+import pandas as pd
+print(pd.read_parquet('data/sample_dialog.parquet').shape)
+EOF
+
+# 4. Confirm file exists
+ls data/sample_dialog.parquet
 
 PoR Viewer Notebook
 
-→ PoR_viewer.ipynb
+PoR_viewer.ipynb
 
 This notebook includes:
 
-Bar charts for Existence score E = Q × S_q × t
+Bar charts for Existence score E = Q × S_q × t.
 
-PoR Collapse Frequency Curve (λ · e^(-λt))
+PoR Collapse Frequency Curve λ · e^(−λt).
 
-Phase Gradient Visualization (dΦ/dt = k · E · S^γ)
+Phase Gradient Visualization dΦ/dt = k · E · S^γ.
 
-
-
----
 
 PoR Evaluation Script
 
-→ PoR_eval.py
+PoR_eval.py
 
-This script reads a dataset (e.g., por_eval_sample.csv), computes E values, and compares them to a threshold to determine activation status (✅ or ❌).
+Reads a dataset (e.g., data/por_eval_sample.csv), computes E values, and compares them to a threshold to determine activation status (✅ or ❌).
 
+Core Class Implementation
 
----
-
-Core Class (main.py)
+src/unconscious_gravity_exp/main.py
 
 class UnconsciousGravityHypothesis:
     def simulate_future_selection(self, query, system_state):
-        # Computes if PoR fires via E = Q × S_q × t
+        # Computes PoR activation via E = Q × S_q × t
+        ...
 
     def define_gravity(self):
         # Returns bias sources: data_bias, algo_design, social_norms
+        ...
 
     def audit_ethics(self, output):
-        # Checks for fairness in AI-generated output
+        # Checks for fairness in AI output
+        ...
+
+Advanced PoR Phase Models
+
+advanced_por_models.py
+
+por_refire_difference(E1, E2): Models re-firing differences.
+
+phase_gradient(E, S): Simulates PoR expansion speed.
+
+por_rate(t, λ): Calculates PoR decay frequency over time.
 
 
----
+Documentation and References
 
-PoR Phase Models
+PoR_terms.md: Symbol and key definitions.
 
-→ advanced_por_models.py: Includes:
+PoR_equations.md: Complete list of equations.
 
-por_refire_difference(E1, E2): models re-firing differences
+PoR_matrix.md: Firing matrix Q × S_q × t.
 
-phase_gradient(E, S): simulates expansion speed of PoR
+PoR_logbook.md: Match history with GPT/Grok/etc.
 
-por_rate(t, λ): calculates PoR decay frequency over time
+UGHer_derivation.md: Structural derivation.
 
+PoR_input_spec.md: Input scaling and assumptions.
 
+PoR_eval_result.md: Sample PoR results.
 
----
+por_inference.py: Response scoring with BERT.
 
-Documentation and Structural References
+por_log_writer.py: JSONL log output.
 
-→ PoR_terms.md: Symbol/key definitions
-
-→ PoR_equations.md: Full equation list
-
-→ PoR_matrix.md: Firing matrix Q × S_q × t
-
-→ PoR_logbook.md: Match history with GPT/Grok/etc
-
-→ UGHer_derivation.md: Structural derivation
-
-→ PoR_input_spec.md: Input scaling and assumptions
-
-→ PoR_eval_result.md: Sample PoR results
-
-→ por_inference.py: Response scoring with BERT
-
-→ por_log_writer.py: JSONL log output
-
-
-
----
 
 Keywords
 
-UGHer
-PoR
-Semantic Resonance
-Unconscious Gravity
-Entropic Future Selection
-AI Structural Models
-
-
----
+UGHer, PoR, Semantic Resonance, Unconscious Gravity, Entropic Future Selection, AI Structural Models
 
 Project Status
 
-Ongoing — semantic matching infrastructure & autonomous PoR loop expansion in progress.
-
-
----
+Ongoing — semantic matching infrastructure and autonomous PoR loop expansion in progress.
 
 License
 
 MIT License © 2025 Yuu6798
 
-
----
-
 Repository Info
 
 Repository: unconscious-gravity
-GitHub: https://github.com/Yuu6798/unconscious-gravity
 
-
----
 
 Contact
 
-For collaboration, questions, or theory integration:
-→ Twitter (X): @kkoo6798kamo
+For collaboration or questions:
 
----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Twitter (X): @kkoo6798kamo
 
 
