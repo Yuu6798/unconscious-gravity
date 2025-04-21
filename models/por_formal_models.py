@@ -51,25 +51,22 @@ class PoRModel:
         if S < 0:
             raise ValueError("entropy must be non-negative")
 
-        # 2-arg version: E × S
+        # 2-arg version
         if k is None and gamma is None:
             return E * S
 
-        # 3-arg version: k × S
+        # 3-arg version
         if k is not None and gamma is None:
             return k * S
 
-        # 4-arg version: k × E × S^γ
+        # 4-arg version
         if k is not None and gamma is not None:
             return k * E * (S ** gamma)
 
         raise TypeError("invalid arguments for phase_gradient")
 
     @staticmethod
-    def gravity_tensor(
-        por_freqs: List[float],
-        entropies: List[float]
-    ) -> float:
+    def gravity_tensor(por_freqs: List[float], entropies: List[float]) -> float:
         """Gravity tensor: Σ por_freq[i] × entropy[i]"""
         return sum(f * s for f, s in zip(por_freqs, entropies))
 
@@ -85,10 +82,9 @@ class PoRModel:
         d_out: float
     ) -> float:
         """Self coherence = ref_flow / (d_in + d_out)"""
-        denom = d_in + d_out
-        if denom == 0:
-            raise ZeroDivisionError("d_in + d_out must not be zero")
-        return ref_flow / denom
+        if d_in + d_out == 0:
+            raise ZeroDivisionError("d_in + d_out is zero")
+        return ref_flow / (d_in + d_out)
 
     @staticmethod
     def por_firing_probability(
