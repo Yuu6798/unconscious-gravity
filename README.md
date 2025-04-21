@@ -3,7 +3,6 @@
 README.md
 
 # [![Run Pytest](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml)
-# Unconscious Gravity Hypothesis (UGHer)
 
 ## Overview
 
