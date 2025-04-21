@@ -1,3 +1,7 @@
+from por_diagnostics.cli import main
+
+if __name__ == "__main__":
+    main()
 Add por_log_writer.py: logs PoR structure scores with timestamp to por_log.jsonl
 
 # por_log_writer.py — PoR照合結果ログ保存スクリプト（改良版）
