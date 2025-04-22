@@ -8,6 +8,10 @@ on:
       - 'models/**'
       - 'tests/**'
       - '.github/workflows/test.yml'
+      - 'scripts/generate_readme.py'
+      - 'metadata/semantic_index.json'
+      - 'README.generated.md'
+      - 'README.md'
   pull_request:
   workflow_dispatch:
 
@@ -18,6 +22,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      # ← ここで README を自動再生成
+      - name: Generate README
+        run: |
+          python scripts/generate_readme.py
+          mv README.generated.md README.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
