@@ -75,9 +75,6 @@ EOF
 
 ls data/sample_dialog.parquet
 
-
-
-
 ---
 
 Phase‑2: Quick‑start
