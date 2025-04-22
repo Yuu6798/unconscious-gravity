@@ -1,0 +1,36 @@
+{
+  "agent": "coder_gpt",
+  "objective": "Phase‑2: CLI エントリ・inference モジュール・実験ランナーを実装し、動作テストまで完了させる",
+  "dependencies": [
+    "src/unconscious_gravity_exp/logger.py",
+    "tests/test_logger.py"
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "cmd": "create src/unconscious_gravity_exp/__main__.py — `python -m unconscious_gravity_exp --log data/out.parquet --turns 10` で dummy_dialog を呼び出せる CLI を実装",
+      "expected_output": "src/unconscious_gravity_exp/__main__.py"
+    },
+    {
+      "step": 2,
+      "cmd": "create src/unconscious_gravity_exp/inference.py — `infer(prompt:str)->str` をダミー実装（今は echo で可）し、将来 evaluator_gpt に置換しやすい形で設計",
+      "expected_output": "src/unconscious_gravity_exp/inference.py"
+    },
+    {
+      "step": 3,
+      "cmd": "create examples/run_experiment.py — (a) CLI 引数: --episodes, --turns, --out_dir (b) each episode で inference を呼び TurnLog を logger.append する",
+      "expected_output": "examples/run_experiment.py"
+    },
+    {
+      "step": 4,
+      "cmd": "create tests/test_inference.py — infer('test') が 'test' を含む文字列を返し、run_experiment で指定 episode×turns 分の行が Parquet に出力されることを pytest で確認",
+      "expected_output": "tests/test_inference.py"
+    },
+    {
+      "step": 5,
+      "cmd": "update README.md — 『Phase‑2 Quick‑start』: `python -m unconscious_gravity_exp --log data/sample.parquet --turns 5` と `python examples/run_experiment.py --episodes 2 --turns 5` の実行手順を追記",
+      "expected_output": "README.md patch"
+    }
+  ],
+  "deliver_to": "./"
+}
