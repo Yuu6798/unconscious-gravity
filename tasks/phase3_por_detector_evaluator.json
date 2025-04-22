@@ -1,0 +1,26 @@
+{
+  "agent": "evaluator_gpt",
+  "objective": "Phase‑3: PoR 発火検出器 v1 を実装し、ログにフラグと強度スコアを付与する",
+  "dependencies": [
+    "src/unconscious_gravity_exp/logger.py",
+    "examples/run_experiment.py"
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "cmd": "design heuristics: if cosine_shift(embedding(prev_resp,curr_resp)) > 0.35 OR token \"[Q]\" present → PoR_flag=1; intensity=sigmoid(Δ)",
+      "expected_output": "docs/por_heuristics_v1.md"
+    },
+    {
+      "step": 2,
+      "cmd": "implement src/unconscious_gravity_exp/por_detector.py exposing detect_pors(parquet_in:str, parquet_out:str) → Parquet with columns {por_flag,intensity}",
+      "expected_output": "src/unconscious_gravity_exp/por_detector.py"
+    },
+    {
+      "step": 3,
+      "cmd": "create tests/test_por_detector.py — run detect_pors on sample_dialog.parquet; assert ≥3 rows flagged & intensity ∈ (0,1)",
+      "expected_output": "tests/test_por_detector.py"
+    }
+  ],
+  "deliver_to": "./"
+}
