@@ -1,5 +1,3 @@
-# scripts/generate_readme.py
-
 import json
 from pathlib import Path
 
@@ -30,33 +28,13 @@ Description: {description}
 
 Tags: {tags} """
 
-TEMPLATE_FOOTER = """
+TEMPLATE_PHASE2 = """
 
-Generated from metadata/semantic_index.json
-"""
+## Phase‑2: Quick‑start
 
-def generate_readme(metadata_path: str = "metadata/semantic_index.json", output_path: str = "README.generated.md"):
-    with open(metadata_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+```bash
+# CLI 実行（5ターン）
+python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 
-    sections = [TEMPLATE_HEAD]
-    for name, entry in data.items():
-        formula = entry.get("formula", "")
-        description = entry.get("description", "")
-        tags = ", ".join(entry.get("tags", []))
-        sections.append(TEMPLATE_ENTRY.format(
-            name=name,
-            formula=formula,
-            description=description,
-            tags=tags
-        ))
-    sections.append(TEMPLATE_FOOTER)
-
-    result = "\n".join(sections)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(result)
-
-    print(f"README generated at {output_path}")
-
-if __name__ == "__main__":
-    generate_readme()
+# 実験ランナー（2エピソード × 各5ターン）
+python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
