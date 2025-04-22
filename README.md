@@ -127,6 +127,4 @@ Contact
 For collaboration or questions:
 Twitter (X): @kkoo6798kamo
 
-この形でマーカーが挿入され、自動生成部分と手動メンテ部分が分離されます。  
-CIワークフローでもこのマーカー間を毎回上書きするようにすれば、手動編集部分（キーワード以降）は消えなくなります。
 
