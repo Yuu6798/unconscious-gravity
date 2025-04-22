@@ -2,6 +2,10 @@
 import json
 from pathlib import Path
 
+# 自動生成部のマーカー
+BEGIN_MARKER = "<!-- BEGIN_AUTO_POR -->"
+END_MARKER   = "<!-- END_AUTO_POR -->"
+
 TEMPLATE_HEAD = """# Unconscious Gravity Hypothesis (UGHer)
 
 A structural model of future selection in AI using semantic resonance.
@@ -41,14 +45,17 @@ python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log da
 
 Generated from metadata/semantic_index.json """
 
-def generate_readme( metadata_path: str = "metadata/semantic_index.json", output_path: str = "README.generated.md" ): # メタデータ読み込み with open(metadata_path, "r", encoding="utf-8") as f: data = json.load(f)
+def generate_readme( metadata_path: str = "metadata/semantic_index.json", output_path: str = "README.generated.md" ): # metadata を読み込む with open(metadata_path, "r", encoding="utf-8") as f: data = json.load(f)
 
 # 各セクションを組み立て
-sections = [TEMPLATE_HEAD]
+sections = [
+    BEGIN_MARKER,
+    TEMPLATE_HEAD
+]
 for name, entry in data.items():
-    formula = entry.get("formula", "")
+    formula     = entry.get("formula", "")
     description = entry.get("description", "")
-    tags = ", ".join(entry.get("tags", []))
+    tags        = ", ".join(entry.get("tags", []))
     sections.append(
         TEMPLATE_ENTRY.format(
             name=name,
@@ -61,6 +68,7 @@ for name, entry in data.items():
 # フェーズ2 Quick‑start とフッターを追加
 sections.append(TEMPLATE_PHASE2)
 sections.append(TEMPLATE_FOOTER)
+sections.append(END_MARKER)
 
 # ファイル出力
 result = "\n".join(sections)
