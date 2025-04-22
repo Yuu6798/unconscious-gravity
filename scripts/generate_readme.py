@@ -50,8 +50,10 @@ def generate_readme(
     with open(metadata_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    # 自動生成部の開始マーカー
+    sections = ["<!-- BEGIN_AUTO_README -->", TEMPLATE_HEAD]
+
     # 各セクションを組み立て
-    sections = [TEMPLATE_HEAD]
     for name, entry in data.items():
         formula     = entry.get("formula", "")
         description = entry.get("description", "")
@@ -68,6 +70,9 @@ def generate_readme(
     # フェーズ2 Quick‑start とフッターを追加
     sections.append(TEMPLATE_PHASE2)
     sections.append(TEMPLATE_FOOTER)
+
+    # 自動生成部の終了マーカー
+    sections.append("<!-- END_AUTO_README -->")
 
     # ファイル出力
     result = "\n".join(sections)
