@@ -1,3 +1,4 @@
+[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](...)
 <!-- BEGIN_AUTO_README -->
 # Unconscious Gravity Hypothesis (UGHer)
 
