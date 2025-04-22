@@ -106,4 +106,15 @@ Description: Predicts phase expansion rate from energy and semantic density.
 Tags: expansion, dynamics 
 
 
+## Phase‑2: Quick‑start
+
+```bash
+# CLI 実行（5ターン）
+python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
+
+# 実験ランナー（2エピソード × 各5ターン）
+python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
+```
+
+
 Generated from metadata/semantic_index.json
