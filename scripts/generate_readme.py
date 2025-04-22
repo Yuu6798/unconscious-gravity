@@ -37,6 +37,8 @@ python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 # 実験ランナー（2エピソード × 各5ターン）
 python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
 ```"""
+
+# ここで Footer を完全に定義
 TEMPLATE_FOOTER = """
 Generated from metadata/semantic_index.json
 
@@ -81,29 +83,18 @@ def generate_readme(
     with open(metadata_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # 自動生成部の開始マーカー
+    # マーカー付きで組み立て
     sections = ["<!-- BEGIN_AUTO_README -->", TEMPLATE_HEAD]
-
-    # 各セクションを組み立て
     for name, entry in data.items():
-        formula     = entry.get("formula", "")
-        description = entry.get("description", "")
-        tags        = ", ".join(entry.get("tags", []))
         sections.append(
             TEMPLATE_ENTRY.format(
                 name=name,
-                formula=formula,
-                description=description,
-                tags=tags
+                formula=entry.get("formula", ""),
+                description=entry.get("description", ""),
+                tags=", ".join(entry.get("tags", []))
             )
         )
-
-    # フェーズ2 Quick‑start とフッターを追加
-    sections.append(TEMPLATE_PHASE2)
-    sections.append(TEMPLATE_FOOTER)
-
-    # 自動生成部の終了マーカー
-    sections.append("<!-- END_AUTO_README -->")
+    sections.extend([TEMPLATE_PHASE2, TEMPLATE_FOOTER, "<!-- END_AUTO_README -->"])
 
     # ファイル出力
     result = "\n".join(sections)
