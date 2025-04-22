@@ -1,6 +1,7 @@
 scripts/generate_readme.py
 
-import json from pathlib import Path
+import json
+from pathlib import Path
 
 TEMPLATE_HEAD = """# Unconscious Gravity Hypothesis (UGHer)
 
