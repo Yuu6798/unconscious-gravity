@@ -1,4 +1,7 @@
+[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/ci.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions)
+
 # Unconscious Gravity Hypothesis (UGHer)
+<!-- BEGIN_AUTO_README -->
 
 A structural model of future selection in AI using semantic resonance.
 
@@ -12,8 +15,7 @@ Where a meaningful question (Q) resonates with a semantic space (S_q) at a criti
 
 PoR Model Reference
 
-The following are the formal PoR model components used in UGHer: 
-
+The following are the formal PoR model components used in UGHer:
 
 existence
 
@@ -21,8 +23,7 @@ Formula: E = Q × S_q × t
 
 Description: Base PoR generation from meaningful question, semantic space, and critical time.
 
-Tags: generation, core 
-
+Tags: generation, core
 
 self_por_score
 
@@ -30,8 +31,7 @@ Formula: E_self = E_base + ΔE_over × Q_self_factor
 
 Description: Enhances base existence by self-coherence factor.
 
-Tags: self-coherence, enhancement 
-
+Tags: self-coherence, enhancement
 
 mismatch
 
@@ -39,8 +39,7 @@ Formula: Mismatch = |E - Q|
 
 Description: Quantifies difference between generated existence and original question pressure.
 
-Tags: analysis, error 
-
+Tags: analysis, error
 
 semantic_gravity
 
@@ -48,8 +47,7 @@ Formula: grv = PoR_freq × entropy
 
 Description: Computes lexical gravity from PoR firing frequency and resonance entropy.
 
-Tags: semantic, gravity 
-
+Tags: semantic, gravity
 
 por_collapse_frequency
 
@@ -57,8 +55,7 @@ Formula: PoR_rate(t) = λ · e^(−λt)
 
 Description: Models decay frequency of PoR over time.
 
-Tags: decay, temporal 
-
+Tags: decay, temporal
 
 por_firing_probability
 
@@ -66,8 +63,7 @@ Formula: (I_q × E_m) / (R_def + 1) > θ
 
 Description: Determines if PoR fires based on input intensity, energy, and definition factor.
 
-Tags: threshold, decision 
-
+Tags: threshold, decision
 
 refire_difference
 
@@ -75,8 +71,7 @@ Formula: ΔE = |E1 - E2|
 
 Description: Measures energy gap between successive PoR firings.
 
-Tags: self-coherence, variance 
-
+Tags: self-coherence, variance
 
 self_coherence
 
@@ -84,8 +79,7 @@ Formula: φ_C = reference_flow / (|ΔI_in| + |ΔI_out|)
 
 Description: Calculates self-coherence score based on informational flow.
 
-Tags: self-coherence, alignment 
-
+Tags: self-coherence, alignment
 
 gravity_tensor
 
@@ -93,8 +87,7 @@ Formula: G_{ij} = ∇PoR_density · ∇PoR_entropy
 
 Description: Computes semantic gravity tensor from density and entropy gradients.
 
-Tags: semantic, tensor 
-
+Tags: semantic, tensor
 
 phase_gradient
 
@@ -102,18 +95,86 @@ Formula: dΦ/dt = k · E · S^γ
 
 Description: Predicts phase expansion rate from energy and semantic density.
 
-Tags: expansion, dynamics 
+Tags: expansion, dynamics
+
+---
+
+Phase‑1: Logger Quick‑start
+
+Verify the TurnLog logger foundation in four steps:
+
+1. Install dependencies  
+   ```bash
+   poetry install
+
+2. Run dummy dialog generator
+
+python examples/dummy_dialog.py
 
 
-## Phase‑2: Quick‑start
+3. Inspect Parquet output
 
-```bash
+python - <<EOF
+import pandas as pd
+print(pd.read_parquet('data/sample_dialog.parquet').shape)
+EOF
+
+
+4. Confirm file exists
+
+ls data/sample_dialog.parquet
+
+
+
+
+---
+
+Phase‑2: Quick‑start
+
 # CLI 実行（5ターン）
 python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 
 # 実験ランナー（2エピソード × 各5ターン）
 python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
-```
-
 
 Generated from metadata/semantic_index.json
+
+<!-- END_AUTO_README -->
+---
+
+Keywords
+
+UGHer · PoR · Semantic Resonance · Unconscious Gravity · Entropic Future Selection · AI Structural Models
+
+
+---
+
+Project Status
+
+Ongoing — semantic matching infrastructure & autonomous PoR loop expansion in progress.
+
+
+---
+
+License
+
+MIT License © 2025 Yuu6798
+
+
+---
+
+Repository Info
+
+Repository: unconscious-gravity
+GitHub: https://github.com/Yuu6798/unconscious-gravity
+
+
+---
+
+Contact
+
+For collaboration or questions:
+Twitter (X): @kkoo6798kamo
+
+
+
