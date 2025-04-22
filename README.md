@@ -16,6 +16,8 @@ E = Q × S_q × t
 
 ---
 
+<!-- BEGIN_AUTO_POR -->
+
 ## PoR Model Components
 
 **PoR_summary.md**  
@@ -32,6 +34,8 @@ Core PoR structure models including:
 
 **metadata/semantic_index.json**  
 Dictionary mapping PoR model functions to meaning tags and descriptions, used for AI searchability and autonomous interpretation.
+
+<!-- END_AUTO_POR -->
 
 ---
 
@@ -75,6 +79,9 @@ EOF
 
 ls data/sample_dialog.parquet
 
+
+
+
 ---
 
 Phase‑2: Quick‑start
@@ -85,6 +92,8 @@ python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 # Experiment runner (2 episodes × 5 turns)
 python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
 
+
+---
 
 PoR Viewer Notebook
 
@@ -191,7 +200,6 @@ MIT License © 2025 Yuu6798
 Repository Info
 
 Repository: unconscious-gravity
-
 GitHub: https://github.com/Yuu6798/unconscious-gravity
 
 
@@ -201,14 +209,6 @@ Contact
 
 For collaboration or questions:
 Twitter (X): @kkoo6798kamo
-
-
----
-
-
-
-
-
 
 
 
