@@ -38,8 +38,39 @@ python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
 ```"""
 TEMPLATE_FOOTER = """
-
 Generated from metadata/semantic_index.json
+
+---
+
+## Keywords
+
+UGHer · PoR · Semantic Resonance · Unconscious Gravity · Entropic Future Selection · AI Structural Models
+
+---
+
+## Project Status
+
+Ongoing — semantic matching infrastructure & autonomous PoR loop expansion in progress.
+
+---
+
+## License
+
+MIT License © 2025 Yuu6798
+
+---
+
+## Repository Info
+
+Repository: unconscious-gravity  
+GitHub: https://github.com/Yuu6798/unconscious-gravity
+
+---
+
+## Contact
+
+For collaboration or questions:  
+Twitter (X): @kkoo6798kamo
 """
 
 def generate_readme(
