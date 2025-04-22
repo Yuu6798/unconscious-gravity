@@ -38,39 +38,41 @@ python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 
 # 実験ランナー（2エピソード × 各5ターン）
 python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
-
-"""
+```"""
 
 TEMPLATE_FOOTER = """
 
-Generated from metadata/semantic_index.json """
+Generated from metadata/semantic_index.json
+"""
 
-def generate_readme( metadata_path: str = "metadata/semantic_index.json", output_path: str = "README.generated.md" ): # metadata を読み込む with open(metadata_path, "r", encoding="utf-8") as f: data = json.load(f)
+def generate_readme(
+    metadata_path: str = "metadata/semantic_index.json",
+    output_path: str = "README.md"
+):
+    # メタデータ読み込み
+    data = json.loads(Path(metadata_path).read_text(encoding="utf-8"))
 
-# 各セクションを組み立て
-sections = [TEMPLATE_HEAD]
-for name, entry in data.items():
-    formula     = entry.get("formula", "")
-    description = entry.get("description", "")
-    tags        = ", ".join(entry.get("tags", []))
-    sections.append(
-        TEMPLATE_ENTRY.format(
-            name=name,
-            formula=formula,
-            description=description,
-            tags=tags
+    sections = [TEMPLATE_HEAD]
+    for name, entry in data.items():
+        formula     = entry.get("formula", "")
+        description = entry.get("description", "")
+        tags        = ", ".join(entry.get("tags", []))
+        sections.append(
+            TEMPLATE_ENTRY.format(
+                name=name,
+                formula=formula,
+                description=description,
+                tags=tags
+            )
         )
-    )
 
-# フェーズ2の Quick‑start とフッターを追加
-sections.append(TEMPLATE_PHASE2)
-sections.append(TEMPLATE_FOOTER)
+    # フェーズ2ブロックとフッターを追加
+    sections.append(TEMPLATE_PHASE2)
+    sections.append(TEMPLATE_FOOTER)
 
-# ファイル出力
-result = "\n".join(sections)
-with open(output_path, "w", encoding="utf-8") as f:
-    f.write(result)
+    content = "\n".join(sections)
+    Path(output_path).write_text(content, encoding="utf-8")
+    print(f"README generated at {output_path}")
 
-print(f"README generated at {output_path}")
-
-if name == "main": generate_readme()
+if __name__ == "__main__":
+    generate_readme()
