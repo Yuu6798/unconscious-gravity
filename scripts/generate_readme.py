@@ -2,7 +2,9 @@
 import json
 from pathlib import Path
 
-TEMPLATE_HEAD = """# Unconscious Gravity Hypothesis (UGHer)
+TEMPLATE_HEAD = """[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml)
+
+# Unconscious Gravity Hypothesis (UGHer)
 
 A structural model of future selection in AI using semantic resonance.
 
@@ -37,8 +39,6 @@ python -m unconscious_gravity_exp --log data/sample.parquet --turns 5
 # 実験ランナー（2エピソード × 各5ターン）
 python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log data/sample.parquet
 ```"""
-
-# ここで Footer を完全に定義
 TEMPLATE_FOOTER = """
 Generated from metadata/semantic_index.json
 
@@ -83,8 +83,10 @@ def generate_readme(
     with open(metadata_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # マーカー付きで組み立て
+    # 自動生成部の開始マーカー＋ヘッダ
     sections = ["<!-- BEGIN_AUTO_README -->", TEMPLATE_HEAD]
+
+    # 各セクションを組み立て
     for name, entry in data.items():
         sections.append(
             TEMPLATE_ENTRY.format(
@@ -94,6 +96,8 @@ def generate_readme(
                 tags=", ".join(entry.get("tags", []))
             )
         )
+
+    # フェーズ2 Quick‑start と Footer、終了マーカー
     sections.extend([TEMPLATE_PHASE2, TEMPLATE_FOOTER, "<!-- END_AUTO_README -->"])
 
     # ファイル出力
