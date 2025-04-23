@@ -28,15 +28,11 @@ def detect_pors(path: str) -> pd.DataFrame:
     Load a Parquet or CSV file, detect Points of Resonance (PoR) using heuristics,
     and return a DataFrame with added 'PoR_flag' and 'intensity' columns.
 
-    Supports:
-      - Parquet (.parquet)
-      - CSV     (.csv)
-
     Heuristics:
       - PoR_flag = 1 if (cosine_shift > THRESHOLD) or ('[Q]' in curr_resp), else 0
       - intensity = sigmoid(cosine_shift)
     """
-    # Read input based on extension
+    # Read input (CSV or Parquet に対応)
     if path.lower().endswith('.csv'):
         df = pd.read_csv(path)
     else:
@@ -71,12 +67,12 @@ def detect_pors(path: str) -> pd.DataFrame:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Detect PoRs in a dataset (Parquet or CSV)"
+        description="Detect PoRs in a Parquet or CSV dialogue dataset"
     )
     parser.add_argument(
         '--input', '-i',
         required=True,
-        help='Path to input Parquet or CSV file'
+        help='Path to input file (Parquet or CSV)'
     )
     parser.add_argument(
         '--output', '-o',
