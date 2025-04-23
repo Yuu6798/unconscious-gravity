@@ -23,19 +23,27 @@ def sigmoid(x: float) -> float:
         return 0.0 if x < 0 else 1.0
 
 
-def detect_pors(parquet_path: str) -> pd.DataFrame:
+def detect_pors(path: str) -> pd.DataFrame:
     """
-    Load a Parquet file, detect Points of Resonance (PoR) using heuristics,
+    Load a Parquet or CSV file, detect Points of Resonance (PoR) using heuristics,
     and return a DataFrame with added 'PoR_flag' and 'intensity' columns.
+
+    Supports:
+      - Parquet (.parquet)
+      - CSV     (.csv)
 
     Heuristics:
       - PoR_flag = 1 if (cosine_shift > THRESHOLD) or ('[Q]' in curr_resp), else 0
       - intensity = sigmoid(cosine_shift)
     """
-    # Read input
-    df = pd.read_parquet(parquet_path)
+    # Read input based on extension
+    if path.lower().endswith('.csv'):
+        df = pd.read_csv(path)
+    else:
+        df = pd.read_parquet(path)
+
     if LOG_ENABLED:
-        logger.info(f"Loaded DataFrame from {parquet_path} with {len(df)} rows")
+        logger.info(f"Loaded DataFrame from {path} with {len(df)} rows")
 
     # Ensure required columns exist and fill defaults
     if 'cosine_shift' not in df.columns:
@@ -63,12 +71,12 @@ def detect_pors(parquet_path: str) -> pd.DataFrame:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Detect PoRs in a Parquet dialogue dataset"
+        description="Detect PoRs in a dataset (Parquet or CSV)"
     )
     parser.add_argument(
         '--input', '-i',
         required=True,
-        help='Path to input Parquet file'
+        help='Path to input Parquet or CSV file'
     )
     parser.add_argument(
         '--output', '-o',
