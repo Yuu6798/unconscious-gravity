@@ -21,7 +21,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # ← ここで README を自動再生成
       - name: Generate README
         run: |
           python scripts/generate_readme.py
@@ -38,9 +37,19 @@ jobs:
           pip install -e .
           pip install pytest pyarrow
 
+      - name: Run PoR detector on dummy data
+        run: |
+          python -m ugher_exp.por_detector \
+            --input examples/dummy_dialog.parquet \
+            --output examples/dummy_dialog_por_result.parquet
+
+      - name: Verify PoR detector output
+        run: |
+          test -f examples/dummy_dialog_por_result.parquet
+
       - name: Run tests
         env:
-          PYTHONPATH: .
+          PYTHONPATH: src
         run: |
           pytest tests/ \
             --maxfail=3 \
