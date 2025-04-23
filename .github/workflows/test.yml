@@ -6,6 +6,7 @@ on:
       - 'src/**'
       - 'models/**'
       - 'tests/**'
+      - 'examples/**'         # ← これを追加
       - '.github/workflows/test.yml'
       - 'scripts/generate_readme.py'
       - 'metadata/semantic_index.json'
