@@ -1,3 +1,4 @@
+cat > src/ugher_exp/por_detector.py << 'EOF'
 import pandas as pd
 import math
 import argparse
@@ -78,3 +79,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+EOF
