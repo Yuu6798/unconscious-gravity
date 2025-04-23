@@ -2,5 +2,5 @@ curr_resp,cosine_shift
 "This is a normal reply",0.20
 "Contains [Q] marker",0.00
 "High shift example",0.50
-"", 
+"",0.00, 
 "Edge at threshold",0.35
