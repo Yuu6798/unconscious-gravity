@@ -39,7 +39,7 @@ jobs:
           pip install -e .
           pip install pytest pyarrow
 
-      - name: Run PoR detector on dummy data (CSV)
+      - name: Run PoR detector on dummy data (CSV) (CSV)
         run: |
           python -m ugher_exp.por_detector \
             --input examples/dummy_dialog.csv \
