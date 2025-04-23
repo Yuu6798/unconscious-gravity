@@ -1,4 +1,3 @@
-cat > src/ugher_exp/por_detector.py << 'EOF'
 import pandas as pd
 import math
 import argparse
@@ -64,14 +63,22 @@ def detect_pors(path: str) -> pd.DataFrame:
     return df
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input', '-i', required=True, help="Input CSV or Parquet file path")
-    parser.add_argument('--output', '-o', required=True, help="Output CSV or Parquet file path")
+    parser = argparse.ArgumentParser(
+        description="Detect PoRs in a Parquet or CSV dataset"
+    )
+    parser.add_argument(
+        '--input', '-i', required=True,
+        help="Input CSV or Parquet file path"
+    )
+    parser.add_argument(
+        '--output', '-o', required=True,
+        help="Output CSV or Parquet file path"
+    )
     args = parser.parse_args()
 
     df = detect_pors(args.input)
 
-    # Save output in matching format
+    # 4. Save output in matching format
     if args.output.lower().endswith('.csv'):
         df.to_csv(args.output, index=False)
     else:
@@ -79,4 +86,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-EOF
