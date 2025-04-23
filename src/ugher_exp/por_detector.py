@@ -27,7 +27,7 @@ def detect_pors(path: str) -> pd.DataFrame:
     Load a Parquet or CSV file, detect Points of Resonance (PoR) using heuristics,
     and return a DataFrame with added 'PoR_flag' and 'intensity' columns.
     """
-    # Read input (CSV or Parquet に対応)
+    # 1. Read input (CSV or Parquet に対応)
     if path.lower().endswith('.csv'):
         df = pd.read_csv(path)
     else:
@@ -36,7 +36,7 @@ def detect_pors(path: str) -> pd.DataFrame:
     if LOG_ENABLED:
         logger.info(f"Loaded DataFrame from {path} with {len(df)} rows")
 
-    # Ensure 'cosine_shift' exists and is numeric
+    # 2. 必要なカラムがなければデフォルトを埋める
     if 'cosine_shift' not in df.columns:
         df['cosine_shift'] = 0.0
     else:
@@ -44,18 +44,21 @@ def detect_pors(path: str) -> pd.DataFrame:
             df['cosine_shift'], errors='coerce'
         ).fillna(0.0)
 
-    # Ensure 'curr_resp' exists
     if 'curr_resp' not in df.columns:
         df['curr_resp'] = ''
     else:
         df['curr_resp'] = df['curr_resp'].fillna('')
 
-    # Apply heuristics
+    # 3. PoR フラグ＆強度計算
     df['PoR_flag'] = (
-        (df['cosine_shift'] > THRESHOLD) |
-        df['curr_resp'].str.contains(r'Q', na=False)
+        (df['cosine_shift'] > THRESHOLD)
+        | df['curr_resp'].str.contains(r'Q', na=False)
     ).astype(int)
+
     df['intensity'] = df['cosine_shift'].apply(sigmoid)
+
+    if LOG_ENABLED:
+        logger.info(f"PoR detection completed: {df['PoR_flag'].sum()} flags set")
 
     return df
 
