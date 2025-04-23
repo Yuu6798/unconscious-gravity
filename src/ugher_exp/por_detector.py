@@ -33,7 +33,11 @@ def detect_pors(parquet_path: str) -> pd.DataFrame:
       - intensity = sigmoid(cosine_shift)
     """
     # Read input
-    df = pd.read_parquet(parquet_path)
+    # Read input (CSV or Parquet に対応)
+    if parquet_path.lower().endswith(".csv"):
+        df = pd.read_csv(parquet_path)
+    else:
+        df = pd.read_parquet(parquet_path)
     if LOG_ENABLED:
         logger.info(f"Loaded DataFrame from {parquet_path} with {len(df)} rows")
 
