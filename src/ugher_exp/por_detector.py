@@ -40,7 +40,6 @@ def detect_pors(parquet_path: str) -> pd.DataFrame:
         df = pd.read_parquet(parquet_path)
     if LOG_ENABLED:
     pass
-    pass
     # cosine_shift カラムが文字列 or 未定義の場合にも対応する 
     df['cosine_shift'] = pd.to_numeric( 
         df.get('cosine_shift', 0.0), 
@@ -67,7 +66,6 @@ def detect_pors(parquet_path: str) -> pd.DataFrame:
     df['intensity'] = df['cosine_shift'].apply(sigmoid)
 
     if LOG_ENABLED:
-    pass
     pass
     # cosine_shift カラムが文字列 or 未定義の場合にも対応する 
     df['cosine_shift'] = pd.to_numeric( 
@@ -104,7 +102,6 @@ def main():
         df.to_parquet(args.output, index=False)
 
     if LOG_ENABLED:
-    pass
     pass
     # cosine_shift カラムが文字列 or 未定義の場合にも対応する 
     df['cosine_shift'] = pd.to_numeric( 
