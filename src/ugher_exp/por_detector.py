@@ -12,7 +12,6 @@ except ImportError:
 
 THRESHOLD = 0.35
 
-
 def sigmoid(x: float) -> float:
     """
     Compute the sigmoid function: 1 / (1 + exp(-x)).
@@ -22,15 +21,10 @@ def sigmoid(x: float) -> float:
     except OverflowError:
         return 0.0 if x < 0 else 1.0
 
-
 def detect_pors(path: str) -> pd.DataFrame:
     """
     Load a Parquet or CSV file, detect Points of Resonance (PoR) using heuristics,
     and return a DataFrame with added 'PoR_flag' and 'intensity' columns.
-
-    Heuristics:
-      - PoR_flag = 1 if (cosine_shift > THRESHOLD) or ('[Q]' in curr_resp), else 0
-      - intensity = sigmoid(cosine_shift)
     """
     # Read input (CSV or Parquet に対応)
     if path.lower().endswith('.csv'):
@@ -41,14 +35,19 @@ def detect_pors(path: str) -> pd.DataFrame:
     if LOG_ENABLED:
         logger.info(f"Loaded DataFrame from {path} with {len(df)} rows")
 
-    # Ensure required columns exist and fill defaults
+    # Ensure required columns exist and fill defaults, converting types as needed
     if 'cosine_shift' not in df.columns:
         df['cosine_shift'] = 0.0
     else:
-        df['cosine_shift'] = df['cosine_shift'].fillna(0.0)
+        # fill missing and coerce to float
+        df['cosine_shift'] = pd.to_numeric(df['cosine_shift'], errors='coerce') \
+                               .fillna(0.0)
 
     if 'curr_resp' not in df.columns:
         df['curr_resp'] = ''
+    else:
+        # ensure it's string type
+        df['curr_resp'] = df['curr_resp'].astype(str)
 
     # Apply heuristics vectorized
     df['PoR_flag'] = (
@@ -64,7 +63,6 @@ def detect_pors(path: str) -> pd.DataFrame:
 
     return df
 
-
 def main():
     parser = argparse.ArgumentParser(
         description="Detect PoRs in a Parquet or CSV dialogue dataset"
@@ -72,7 +70,7 @@ def main():
     parser.add_argument(
         '--input', '-i',
         required=True,
-        help='Path to input file (Parquet or CSV)'
+        help='Path to input Parquet or CSV file'
     )
     parser.add_argument(
         '--output', '-o',
@@ -91,7 +89,6 @@ def main():
 
     if LOG_ENABLED:
         logger.info(f"Written output to {args.output}")
-
 
 if __name__ == '__main__':
     main()
