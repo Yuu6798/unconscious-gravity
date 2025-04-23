@@ -38,41 +38,19 @@ def detect_pors(parquet_path: str) -> pd.DataFrame:
         df = pd.read_csv(parquet_path)
     else:
         df = pd.read_parquet(parquet_path)
-    if LOG_ENABLED:
-    pass
-    # cosine_shift カラムが文字列 or 未定義の場合にも対応する 
-    df['cosine_shift'] = pd.to_numeric( 
-        df.get('cosine_shift', 0.0), 
-        errors='coerce' 
-    ).fillna(0.0)
-        logger.info(f"Loaded DataFrame from {parquet_path} with {len(df)} rows")
-
-    # Ensure required columns exist and fill defaults
-    if 'cosine_shift' not in df.columns:
-        df['cosine_shift'] = 0.0
-    else:
-        df['cosine_shift'] = df['cosine_shift'].fillna(0.0)
-
-    if 'curr_resp' not in df.columns:
-        df['curr_resp'] = ''
-
-    # Apply heuristics vectorized
-    df['PoR_flag'] = (
-        (df['cosine_shift'] > THRESHOLD) |
-        df['curr_resp'].str.contains(r"Q", na=False)
-    ).astype(int)
-
-    # Compute intensity
-    df['intensity'] = df['cosine_shift'].apply(sigmoid)
-
-    if LOG_ENABLED:
-    pass
     # cosine_shift カラムが文字列 or 未定義の場合にも対応する 
     df['cosine_shift'] = pd.to_numeric( 
         df.get('cosine_shift', 0.0), 
         errors='coerce' 
     ).fillna(0.0)
         logger.info(f"PoR detection completed: {df['PoR_flag'].sum()} flags set")
+    # cosine_shift が文字列 or 未定義 の場合にも対応する
+    if "cosine_shift" not in df.columns:
+        df["cosine_shift"] = 0.0
+    else:
+        df["cosine_shift"] = pd.to_numeric(df["cosine_shift"], errors="coerce").fillna(0.0)
+    # curr_resp がなければ空文字列に
+    df["curr_resp"] = df.get("curr_resp", "").fillna("")
 
     return df
 
@@ -101,14 +79,19 @@ def main():
     else:
         df.to_parquet(args.output, index=False)
 
-    if LOG_ENABLED:
-    pass
     # cosine_shift カラムが文字列 or 未定義の場合にも対応する 
     df['cosine_shift'] = pd.to_numeric( 
         df.get('cosine_shift', 0.0), 
         errors='coerce' 
     ).fillna(0.0)
         logger.info(f"Written output to {args.output}")
+    # cosine_shift が文字列 or 未定義 の場合にも対応する
+    if "cosine_shift" not in df.columns:
+        df["cosine_shift"] = 0.0
+    else:
+        df["cosine_shift"] = pd.to_numeric(df["cosine_shift"], errors="coerce").fillna(0.0)
+    # curr_resp がなければ空文字列に
+    df["curr_resp"] = df.get("curr_resp", "").fillna("")
 
 
 if __name__ == '__main__':
