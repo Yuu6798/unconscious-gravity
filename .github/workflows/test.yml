@@ -6,7 +6,7 @@ on:
       - 'src/**'
       - 'models/**'
       - 'tests/**'
-      - 'examples/**'         # ← これを追加
+      - 'examples/**'         # ← 追加済み
       - '.github/workflows/test.yml'
       - 'scripts/generate_readme.py'
       - 'metadata/semantic_index.json'
@@ -39,15 +39,15 @@ jobs:
           pip install -e .
           pip install pytest pyarrow
 
-      - name: Run PoR detector on dummy data
+      - name: Run PoR detector on dummy data (CSV)
         run: |
           python -m ugher_exp.por_detector \
-            --input examples/dummy_dialog.parquet \
-            --output examples/dummy_dialog_por_result.parquet
+            --input examples/dummy_dialog.csv \
+            --output examples/dummy_dialog_por_result.csv
 
-      - name: Verify PoR detector output
+      - name: Verify PoR detector output (CSV)
         run: |
-          test -f examples/dummy_dialog_por_result.parquet
+          test -f examples/dummy_dialog_por_result.csv
 
       - name: Run tests
         env:
