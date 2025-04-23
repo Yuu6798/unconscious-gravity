@@ -1,0 +1,16 @@
+import pandas as pd
+import numpy as np
+
+# サンプルデータ定義
+data = [
+    {"curr_resp": "This is a normal reply", "cosine_shift": 0.20},
+    {"curr_resp": "Contains [Q] marker",    "cosine_shift": 0.00},
+    {"curr_resp": "High shift example",     "cosine_shift": 0.50},
+    {"curr_resp": "",                       "cosine_shift": np.nan},
+    {"curr_resp": "Edge at threshold",      "cosine_shift": 0.35},
+]
+
+df = pd.DataFrame(data)
+
+# Parquet 書き出し
+df.to_parquet("examples/dummy_dialog.parquet", index=False)
