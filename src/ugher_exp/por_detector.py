@@ -12,55 +12,82 @@ except ImportError:
 
 THRESHOLD = 0.35
 
-def sigmoid(x: float) -> float: """ Compute the sigmoid function: 1 / (1 + exp(-x)). """ try: return 1 / (1 + math.exp(-x)) except OverflowError: return 0.0 if x < 0 else 1.0
 
-def detect_pors(parquet_path: str) -> pd.DataFrame: """ Load a Parquet file, detect Points of Resonance (PoR) using heuristics, and return a DataFrame with added 'PoR_flag' and 'intensity' columns.
+def sigmoid(x: float) -> float:
+    """
+    Compute the sigmoid function: 1 / (1 + exp(-x)).
+    """
+    try:
+        return 1 / (1 + math.exp(-x))
+    except OverflowError:
+        return 0.0 if x < 0 else 1.0
 
-Heuristics:
-- PoR_flag = 1 if (cosine_shift > THRESHOLD) or ('[Q]' in curr_resp), else 0
-- intensity = sigmoid(cosine_shift)
-"""
-# Read input
-df = pd.read_parquet(parquet_path)
-if LOG_ENABLED:
-    logger.info(f"Loaded DataFrame from {parquet_path} with {len(df)} rows")
 
-# Ensure required columns exist
-if 'cosine_shift' not in df.columns:
-    df['cosine_shift'] = 0.0
-else:
-    # Replace NaN with 0.0
-    df['cosine_shift'] = df['cosine_shift'].fillna(0.0)
+def detect_pors(parquet_path: str) -> pd.DataFrame:
+    """
+    Load a Parquet file, detect Points of Resonance (PoR) using heuristics,
+    and return a DataFrame with added 'PoR_flag' and 'intensity' columns.
 
-if 'curr_resp' not in df.columns:
-    df['curr_resp'] = ''
+    Heuristics:
+      - PoR_flag = 1 if (cosine_shift > THRESHOLD) or ('[Q]' in curr_resp), else 0
+      - intensity = sigmoid(cosine_shift)
+    """
+    # Read input
+    df = pd.read_parquet(parquet_path)
+    if LOG_ENABLED:
+        logger.info(f"Loaded DataFrame from {parquet_path} with {len(df)} rows")
 
-# Apply heuristics vectorized
-df['PoR_flag'] = (
-    (df['cosine_shift'] > THRESHOLD) |
-    df['curr_resp'].str.contains(r"Q", na=False)
-).astype(int)
+    # Ensure required columns exist and fill defaults
+    if 'cosine_shift' not in df.columns:
+        df['cosine_shift'] = 0.0
+    else:
+        df['cosine_shift'] = df['cosine_shift'].fillna(0.0)
 
-# Compute intensity
-df['intensity'] = df['cosine_shift'].apply(sigmoid)
+    if 'curr_resp' not in df.columns:
+        df['curr_resp'] = ''
 
-if LOG_ENABLED:
-    logger.info("PoR detection completed: %d flags set", df['PoR_flag'].sum())
+    # Apply heuristics vectorized
+    df['PoR_flag'] = (
+        (df['cosine_shift'] > THRESHOLD) |
+        df['curr_resp'].str.contains(r"Q", na=False)
+    ).astype(int)
 
-return df
+    # Compute intensity
+    df['intensity'] = df['cosine_shift'].apply(sigmoid)
 
-def main(): parser = argparse.ArgumentParser( description="Detect PoRs in a Parquet dialogue dataset" ) parser.add_argument( '--input', '-i', required=True, help='Path to input Parquet file' ) parser.add_argument( '--output', '-o', required=True, help='Path to output file (Parquet or CSV)' ) args = parser.parse_args()
+    if LOG_ENABLED:
+        logger.info(f"PoR detection completed: {df['PoR_flag'].sum()} flags set")
 
-df = detect_pors(args.input)
+    return df
 
-# Write output
-if args.output.lower().endswith('.csv'):
-    df.to_csv(args.output, index=False)
-else:
-    df.to_parquet(args.output, index=False)
 
-if LOG_ENABLED:
-    logger.info(f"Written output to {args.output}")
+def main():
+    parser = argparse.ArgumentParser(
+        description="Detect PoRs in a Parquet dialogue dataset"
+    )
+    parser.add_argument(
+        '--input', '-i',
+        required=True,
+        help='Path to input Parquet file'
+    )
+    parser.add_argument(
+        '--output', '-o',
+        required=True,
+        help='Path to output file (Parquet or CSV)'
+    )
+    args = parser.parse_args()
 
-if name == 'main': main()
+    df = detect_pors(args.input)
 
+    # Write output
+    if args.output.lower().endswith('.csv'):
+        df.to_csv(args.output, index=False)
+    else:
+        df.to_parquet(args.output, index=False)
+
+    if LOG_ENABLED:
+        logger.info(f"Written output to {args.output}")
+
+
+if __name__ == '__main__':
+    main()
