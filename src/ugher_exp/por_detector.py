@@ -19,7 +19,7 @@ def sigmoid(x: float) -> float:
     try:
         return 1 / (1 + math.exp(-x))
     except OverflowError:
-        return 0.0 if x < 0 else 1.0
+        return 0.0
 
 def detect_pors(path: str) -> pd.DataFrame:
     """
@@ -35,60 +35,50 @@ def detect_pors(path: str) -> pd.DataFrame:
     if LOG_ENABLED:
         logger.info(f"Loaded DataFrame from {path} with {len(df)} rows")
 
-    # Ensure required columns exist and fill defaults, converting types as needed
-    if 'cosine_shift' not in df.columns:
-        df['cosine_shift'] = 0.0
-    else:
-        # fill missing and coerce to float
-        df['cosine_shift'] = pd.to_numeric(df['cosine_shift'], errors='coerce') \
-                               .fillna(0.0)
+    # cosine_shift カラムがない or 文字列のまま の場合に対応
+    # → 存在しなければ 0.0, 文字列なら数値に変換（失敗時は NaN→0.0）
+    df['cosine_shift'] = pd.to_numeric(
+        df.get('cosine_shift', 0.0),
+        errors='coerce'
+    ).fillna(0.0)
 
-    if 'curr_resp' not in df.columns:
-        df['curr_resp'] = ''
-    else:
-        # ensure it's string type
-        df['curr_resp'] = df['curr_resp'].astype(str)
+    # curr_resp がない場合は空文字列に
+    df['curr_resp'] = df.get('curr_resp', '').fillna('')
 
-    # Apply heuristics vectorized
+    # PoR フラグと強度計算
     df['PoR_flag'] = (
-        (df['cosine_shift'] > THRESHOLD) |
-        df['curr_resp'].str.contains(r"Q", na=False)
+        (df['cosine_shift'] > THRESHOLD)
+        | df['curr_resp'].str.contains(r'Q', na=False)
     ).astype(int)
 
-    # Compute intensity
     df['intensity'] = df['cosine_shift'].apply(sigmoid)
-
-    if LOG_ENABLED:
-        logger.info(f"PoR detection completed: {df['PoR_flag'].sum()} flags set")
 
     return df
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Detect PoRs in a Parquet or CSV dialogue dataset"
+    parser = argparse.ArgumentParser(description="Detect PoRs in dialogue data")
+    parser.add_argument(
+        "--input", "-i",
+        required=True,
+        help="Path to input Parquet or CSV file"
     )
     parser.add_argument(
-        '--input', '-i',
+        "--output", "-o",
         required=True,
-        help='Path to input Parquet or CSV file'
-    )
-    parser.add_argument(
-        '--output', '-o',
-        required=True,
-        help='Path to output file (Parquet or CSV)'
+        help="Path to output Parquet or CSV file"
     )
     args = parser.parse_args()
 
     df = detect_pors(args.input)
 
-    # Write output
+    # 出力先に合わせて Parquet/CSV を自動判定
     if args.output.lower().endswith('.csv'):
         df.to_csv(args.output, index=False)
     else:
         df.to_parquet(args.output, index=False)
 
     if LOG_ENABLED:
-        logger.info(f"Written output to {args.output}")
+        logger.info(f"Wrote results to {args.output}")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
