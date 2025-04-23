@@ -1,10 +1,14 @@
 import pandas as pd
-import math 
+import math
 import argparse
 
-Optional: integrate with your project logger
-
-try: from .logger import logger LOG_ENABLED = True except ImportError: logger = None  # type: ignore LOG_ENABLED = False
+# Optional: integrate with your project logger
+try:
+    from .logger import logger
+    LOG_ENABLED = True
+except ImportError:
+    logger = None  # type: ignore
+    LOG_ENABLED = False
 
 THRESHOLD = 0.35
 
