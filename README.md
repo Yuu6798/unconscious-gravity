@@ -119,6 +119,8 @@ python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log da
 
 Generated from metadata/semantic_index.json
 
+
+<!-- END_AUTO_README -->
 ---
 
 ## Keywords
@@ -151,4 +153,3 @@ GitHub: https://github.com/Yuu6798/unconscious-gravity
 For collaboration or questions:  
 Twitter (X): @kkoo6798kamo
 
-<!-- END_AUTO_README -->
