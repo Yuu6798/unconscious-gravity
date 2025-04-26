@@ -1,0 +1,53 @@
+{
+  "agent": "coder_gpt",
+  "objective": "Phase-4: テストカバレッジ計測・CI 連携・基本ドキュメント整備・配布準備を行う",
+  "dependencies": [
+    "src/unconscious_gravity_exp/",
+    "tests/"
+  ],
+  "actions": [
+    /* 1. カバレッジ生成 */
+    {
+      "step": 1,
+      "cmd": "add pytest-cov to dev dependencies; update pyproject.toml or requirements-dev.txt",
+      "expected_output": "pyproject.toml patch"
+    },
+    {
+      "step": 2,
+      "cmd": "modify tests workflow (.github/workflows/test.yml) — run `pytest --cov=src --cov-report=xml` and upload coverage.xml as artifact",
+      "expected_output": ".github/workflows/test.yml patch"
+    },
+
+    /* 2. Codecov / カバレッジバッジ */
+    {
+      "step": 3,
+      "cmd": "integrate Codecov (or Coveralls) step; add README badge (![coverage]) pointing to main branch",
+      "expected_output": "README.md patch"
+    },
+
+    /* 3. ドキュメント整備 */
+    {
+      "step": 4,
+      "cmd": "create docs/SETUP.md — proot-distro Ubuntu 24.04 + package install 手順",
+      "expected_output": "docs/SETUP.md"
+    },
+    {
+      "step": 5,
+      "cmd": "create docs/CONTRIBUTING.md — tasks/ フロー・ブランチ運用・pytest 実行法を記載",
+      "expected_output": "docs/CONTRIBUTING.md"
+    },
+
+    /* 4. 配布準備（Docker / PyPI スケルトン） */
+    {
+      "step": 6,
+      "cmd": "add Dockerfile (python:3.12-slim, copy repo, poetry install, default CMD run_experiment.py)",
+      "expected_output": "Dockerfile"
+    },
+    {
+      "step": 7,
+      "cmd": "add pyproject classifiers & version bump to 0.1.0; create scripts/build_wheel.sh for future PyPI push",
+      "expected_output": "pyproject.toml patch + scripts/build_wheel.sh"
+    }
+  ],
+  "deliver_to": "./"
+}
