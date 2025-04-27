@@ -12,7 +12,12 @@ setup(
         "tqdm",
         "transformers",
     ],
-    extras_require={"dev": ["pytest"]},
+    extras_require={
+        "dev": [
+            "pytest",
+            "pytest-cov"
+        ]
+    },
     python_requires=">=3.10",
     entry_points={
         "console_scripts": [
