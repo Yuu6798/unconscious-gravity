@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-setup(
     name="unconscious_gravity",
     version="0.1.0",
     description="PoR log diagnostics CLI",
