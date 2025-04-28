@@ -1,7 +1,10 @@
-from setuptools import setup
-from setuptools import find_packages
+from setuptools import setup, find_packages
+
+setup(
+    name="unconscious_gravity_exp",
+    version="0.0.9",
     description="PoR log diagnostics CLI",
-    packages=find_packages(where="src"),   # ← 推奨形
+    packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
         "numpy",
@@ -9,16 +12,10 @@ from setuptools import find_packages
         "tqdm",
         "transformers",
     ],
-    extras_require={
-        "dev": [
-            "pytest",
-            "pytest-cov"
-        ]
-    },
     python_requires=">=3.10",
     entry_points={
         "console_scripts": [
-            "por-diagnose=por_diagnostics.cli:main",
+            "por-diagnose=ugher_exp.por_detector:main",
         ],
     },
 )
