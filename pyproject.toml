@@ -1,13 +1,19 @@
 [project]
 name = "unconscious-gravity-exp"
 version = "0.0.9"
-authors = [{name = "Yuu"}]
+authors = [{ name = "Yuu" }]
 description = "PoR simulation toolkit"
 readme = "README.md"
 requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "tqdm",
+    "transformers",
+]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = { "" = "src" }
 packages = ["unconscious_gravity_exp"]
 
 [build-system]
