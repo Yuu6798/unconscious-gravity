@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+setup(
     version="0.1.0",
     description="PoR log diagnostics CLI",
     packages=find_packages(where="src"),   # ← 推奨形
