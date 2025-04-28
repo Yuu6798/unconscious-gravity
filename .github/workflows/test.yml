@@ -39,9 +39,11 @@ jobs:
           pip install -e .
           pip install pandas numpy tqdm transformers
           python -c "import pandas, numpy, tqdm, transformers"
-pip install pytest pyarrow
+          pip install pytest pyarrow
 
       - name: Run PoR detector on dummy data (CSV)
+        env:
+          PYTHONPATH: src
         run: |
           python -m ugher_exp.por_detector \
             --input examples/dummy_dialog.csv \
