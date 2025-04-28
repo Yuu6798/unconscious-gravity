@@ -6,7 +6,7 @@ on:
       - 'src/**'
       - 'models/**'
       - 'tests/**'
-      - 'examples/**'         # ← 追加済み
+      - 'examples/**'
       - '.github/workflows/test.yml'
       - 'scripts/generate_readme.py'
       - 'metadata/semantic_index.json'
@@ -37,6 +37,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e .
+          pip install pandas numpy tqdm transformers
           pip install pytest pyarrow
 
       - name: Run PoR detector on dummy data (CSV)
