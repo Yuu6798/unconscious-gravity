@@ -1,11 +1,10 @@
-from setuptools 
-import setup, find_packages
+from setuptools import setup, find_packages
 
 setup(
     name="unconscious_gravity",
     version="0.1.0",
     description="PoR log diagnostics CLI",
-    packages=find_packages("src"),
+    packages=find_packages(where="src"),   # ← 推奨形
     package_dir={"": "src"},
     install_requires=[
         "numpy",
