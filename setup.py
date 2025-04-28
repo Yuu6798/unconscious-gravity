@@ -1,5 +1,5 @@
-from setuptools import setup, find_packages
-    version="0.1.0",
+from setuptools import setup
+from setuptools import find_packages
     description="PoR log diagnostics CLI",
     packages=find_packages(where="src"),   # ← 推奨形
     package_dir={"": "src"},
