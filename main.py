@@ -1,4 +1,4 @@
 # Auto-gen
 
 def add(a,b):
-    return a+b  # 0.8047
+    return a+b  # 0.0360
