@@ -1,5 +1,5 @@
 # Python bytecode
-**/__pycache__/
+__pycache__/
 *.py[cod]
 
 # pip wheel キャッシュ／ビルド成果物
@@ -8,3 +8,8 @@
 # テスト用ログや出力
 sample_logs/
 output/
+
+# 追加で除外したい物があればここへ
+*.log
+*.txt
+.env
