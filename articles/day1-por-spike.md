@@ -8,7 +8,6 @@ topics:
   - "GPT4o"
   - "生成AI"
   - "LLMリスク"
-  - "無意識的重力"
 published: true       # ← true/false はそのまま書く
 
 ---
