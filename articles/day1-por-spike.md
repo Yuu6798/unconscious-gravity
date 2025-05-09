@@ -1,10 +1,16 @@
-
 ---
 title: "Day 1 — PoR入門：AIの“照合点”を見つける"
 emoji: "🔍"
-type: "article"
-topics: ["AI安全性", "PoR", "GPT4o", "生成AI", "LLMリスク", "無意識的重力"]
-published: true
+type: "tech"          # ← ここを tech に
+topics:
+  - "AI安全性"
+  - "PoR"
+  - "GPT4o"
+  - "生成AI"
+  - "LLMリスク"
+  - "無意識的重力"
+published: true       # ← true/false はそのまま書く
+
 ---
 
 ## 導入として
