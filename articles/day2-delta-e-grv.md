@@ -29,6 +29,7 @@ Day 1 では **Point of Resonance（PoR）** を「照合が瞬間的に確定�
 ```math
 \Delta E_t = E_t - E_{t-1}, \qquad
 E_t = Q_t \times S_{q_t} \times t
+```
 
 質問強度 $Q$、意味空間密度 $S_q$、経過時間 $t$ を掛け合わせた存在エネルギー $E$ のフレーム間差分が ΔE です。
 
