@@ -123,7 +123,7 @@ $\tau_{\Delta E} = \bar{\Delta E} + 2\sigma_{\Delta E}$
 
 ---
 
-10 行 Python で ΔE / grv をプロットする
+## 10 行 Python で ΔE / grv をプロットする
 
 ```python
 import pandas as pd, matplotlib.pyplot as plt, math, re
