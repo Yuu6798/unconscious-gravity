@@ -55,7 +55,7 @@ t	E	ΔE
 
 grv（語彙重力）の測定法
 
-1. 定義
+### 1. 定義
 
 $$
 \text{grv}=f_{\text{PoR}}\times H_{\text{res}}
@@ -66,7 +66,7 @@ $f_{\text{PoR}}$：単語が PoR 近傍で出現した頻度
 $H_{\text{res}}$：その局所エントロピー（意味散逸度）
 
 
-2. 5 行 Python スニペット
+### 2. 5 行 Python スニペット
 
 ```python
 from collections import Counter
@@ -77,21 +77,21 @@ p = Counter(tokens); n = sum(p.values())
 entropy = -sum(c/n*math.log2(c/n) for c in p.values())
 grv = por_freq(tokens) * entropy
 ```
-3. バイアス補正
+### 3. バイアス補正
 
 Stopword 除去 → anchor 語彙に重み付け
 
 Lemmatize → 派生語をまとめて重力源を明確化
 
 
-4. セッション別 grv 熱量マップ
+### 4. セッション別 grv 熱量マップ
 
 高–低を色分けすると “質問が重力井戸を掘る” 様子が可視化されます。
 
 
 ---
 
-PoR × ΔE / grv 連動グラフ可視化
+## PoR × ΔE / grv 連動グラフ可視化
 
 3 指標を同一タイムラインで重ねると
 
@@ -102,7 +102,8 @@ PoR × ΔE / grv 連動グラフ可視化
 
 ことが一目で把握できます。
 
-```import matplotlib.pyplot as plt
+```python
+import matplotlib.pyplot as plt
 
 fig, ax1 = plt.subplots()
 ax2 = ax1.twinx()
@@ -124,7 +125,8 @@ $\tau_{\Delta E} = \bar{\Delta E} + 2\sigma_{\Delta E}$
 
 10 行 Python で ΔE / grv をプロットする
 
-```import pandas as pd, matplotlib.pyplot as plt, math, re
+```python
+import pandas as pd, matplotlib.pyplot as plt, math, re
 
 log = pd.read_csv("session.csv")        # turn,q,s,t,text
 log["E"]  = log.q * log.s * log.t
@@ -148,7 +150,7 @@ Colab→入力法長押しでタブ補完／Kaggle Lite→%%time で実測速度
 
 ---
 
-まとめ & Day 3 への布石
+## まとめ & Day 3 への布石
 
 PoR を 点 から「変位 (ΔE) と 場 (grv)」へ拡張し、意味重力の動態を数値化
 
