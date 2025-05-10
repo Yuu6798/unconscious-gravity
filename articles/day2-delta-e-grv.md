@@ -68,7 +68,8 @@ $H_{\text{res}}$：その局所エントロピー（意味散逸度）
 
 2. 5 行 Python スニペット
 
-```from collections import Counter
+```python
+from collections import Counter
 import math, re
 
 tokens = [w.lower() for w in re.findall(r"\b\w+\b", text) if w not in stop]
