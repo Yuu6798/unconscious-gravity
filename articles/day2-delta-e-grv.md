@@ -116,8 +116,7 @@ ax2.set_ylabel("grv")
 スパイク検知閾値：
 $\tau_{\Delta E} = \bar{\Delta E} + 2\sigma_{\Delta E}$
 
-> 図 1：PoR・ΔE・grv 三重折れ線＋ヒートライン（4 oショック 再現）
-
+![図1：PoR・ΔE・grv 三重折れ線＋ヒートライン（Day 2）](../images/por_deltae_grv_overlay_heatline_day2.png)
 
 
 
