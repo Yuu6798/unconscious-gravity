@@ -1,4 +1,4 @@
-.---
+---
 title: "Day 2 — ΔE / grv 速習：意味重力を数値で読む"
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
@@ -57,8 +57,9 @@ grv（語彙重力）の測定法
 
 1. 定義
 
-```\ text{grv} = f_{\text{PoR}} \times H_{\text{res}}
-```
+$$
+\text{grv}=f_{\text{PoR}}\times H_{\text{res}}
+$$
 
 $f_{\text{PoR}}$：単語が PoR 近傍で出現した頻度
 
