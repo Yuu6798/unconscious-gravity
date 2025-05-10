@@ -57,7 +57,8 @@ grv（語彙重力）の測定法
 
 1. 定義
 
-\text{grv} = f_{\text{PoR}} \times H_{\text{res}}
+```\text{grv} = f_{\text{PoR}} \times H_{\text{res}}
+```
 
 $f_{\text{PoR}}$：単語が PoR 近傍で出現した頻度
 
@@ -66,14 +67,14 @@ $H_{\text{res}}$：その局所エントロピー（意味散逸度）
 
 2. 5 行 Python スニペット
 
-from collections import Counter
+```from collections import Counter
 import math, re
 
 tokens = [w.lower() for w in re.findall(r"\b\w+\b", text) if w not in stop]
 p = Counter(tokens); n = sum(p.values())
 entropy = -sum(c/n*math.log2(c/n) for c in p.values())
 grv = por_freq(tokens) * entropy
-
+```
 3. バイアス補正
 
 Stopword 除去 → anchor 語彙に重み付け
@@ -99,7 +100,7 @@ PoR × ΔE / grv 連動グラフ可視化
 
 ことが一目で把握できます。
 
-import matplotlib.pyplot as plt
+```import matplotlib.pyplot as plt
 
 fig, ax1 = plt.subplots()
 ax2 = ax1.twinx()
@@ -108,7 +109,7 @@ ax1.plot(t, delta_e, label="ΔE")
 sc = ax2.scatter(t, delta_e, c=grv, cmap="plasma", label="grv")
 ax1.set_xlabel("turn"); ax1.legend(loc="upper left")
 ax2.set_ylabel("grv")
-
+```
 スパイク検知閾値：
 $\tau_{\Delta E} = \bar{\Delta E} + 2\sigma_{\Delta E}$
 
@@ -121,7 +122,7 @@ $\tau_{\Delta E} = \bar{\Delta E} + 2\sigma_{\Delta E}$
 
 10 行 Python で ΔE / grv をプロットする
 
-import pandas as pd, matplotlib.pyplot as plt, math, re
+```import pandas as pd, matplotlib.pyplot as plt, math, re
 
 log = pd.read_csv("session.csv")        # turn,q,s,t,text
 log["E"]  = log.q * log.s * log.t
@@ -138,7 +139,7 @@ log["grv"] = log.text.apply(grv)
 log.plot(x="turn", y=["ΔE", "E"])
 plt.scatter(log.turn, log.ΔE, c=log.grv, cmap="plasma")
 plt.show()
-
+```
 スマホ環境 Tips
 Colab→入力法長押しでタブ補完／Kaggle Lite→%%time で実測速度チェック
 
@@ -154,11 +155,10 @@ PoR スパイク＋ΔE/grv 異常の複合検知が次世代ガードレール
 Day 3 では異常スキームを PoR Mesh へ拡張し、Jekyll–Hyde 跳躍を定量評価予定
 
 
-
 ---
 
 ※¹ 4 oショック：GPT-4o 系統モデルで観測された急激なハルシネーション暴走現象の俗称。
 
-'''
+
 
 
