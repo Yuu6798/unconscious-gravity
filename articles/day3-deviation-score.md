@@ -49,15 +49,14 @@ X_{\text{norm}} = \frac{X - X_{\min}}{X_{\max} - X_{\min}}
 PoR 値の“突発的な上昇”が逸脱の引き金となるため、まずその検出を行います。
 
 ### 定義式
-\[
-\text{Spike}_t = \left\{
-\begin{array}{ll}
-1 & \text{if } PoR_t > \mu_{PoR} + k\sigma_{PoR} \quad (k=2) \\
-0 & \text{otherwise}
-\end{array}
-\right.
-\]
 
+$$
+\text{Spike}_t =
+\begin{cases}
+1 & \text{if } \mathrm{PoR}_t > \mu_{\mathrm{PoR}} + k\,\sigma_{\mathrm{PoR}} \quad (k = 2)\\
+0 & \text{otherwise}
+\end{cases}
+$$
 ### 連続スパイク群の畳み込み
 - 例：11110 → 1 イベントとしてまとめ  
 - `scipy.ndimage.label()` で自動ラベリング可能
@@ -75,26 +74,28 @@ PoR 値の“突発的な上昇”が逸脱の引き金となるため、まず�
 
 ### 1. Z-score 標準化と Mahalanobis 距離
 ΔE と grv を以下で変換：
-\[
-Z_{ΔE} = \frac{ΔE - μ_{ΔE}}{σ_{ΔE}}, \quad Z_{grv} = \frac{grv - μ_{grv}}{σ_{grv}}
-\]
 
-さらに、
-\[
-A_t = \sqrt{
+
+$$
+Z_{\Delta E}= \frac{\Delta E-\mu_{\Delta E}}{\sigma_{\Delta E}},\quad
+Z_{\text{grv}}= \frac{\text{grv}-\mu_{\text{grv}}}{\sigma_{\text{grv}}}
+$$
+
+さらに，
+
+$$
+A_t = \sqrt{%
 \begin{bmatrix}
-Z_{ΔE} & Z_{grv}
+Z_{\Delta E} & Z_{\text{grv}}
 \end{bmatrix}
 \cdot
 \Sigma^{-1}
 \cdot
 \begin{bmatrix}
-Z_{ΔE} \\
-Z_{grv}
-\end{bmatrix}
-}
-\]
-
+Z_{\Delta E} \\
+Z_{\text{grv}}
+\end{bmatrix}}
+$$
 ### 2. 閾値 τ_A の最適化
 τ_A を動かして ROC 曲線を得ることで異常/正常分類精度を最大化（Day 4 で精密化）。
 
