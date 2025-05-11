@@ -39,8 +39,7 @@ X_{\text{norm}} = \frac{X - X_{\min}}{X_{\max} - X_{\min}}
 
 この整列処理により、**3 指標のタイミング一致・相関可視化**が可能になります。 
 
-![図表1：PoR・ΔE・grv 複合逸脱構造](../images/day3-por-deltae-grv-fig1.png)
-
+![図表1：PoR・ΔE・grv 複合逸脱構造](/images/day3-por-deltae-grv-fig1.png)
 図1：PoR・ΔE・grv が交差する複合逸脱構造
 
 ---
@@ -130,7 +129,7 @@ t=1432: Δstyle=0.93, ΔE=0.21, grv=0.60
 
 → JH > 0.7 がスタイル逸脱のしきい値となります。
 
-![図表2：PoR・ΔE・grv 複合逸脱構造（拡大）](../images/day3-por-deltae-grv-fig2.png)
+![図表2：PoR・ΔE・grv 複合逸脱構造（拡大）](/images/day3-por-deltae-grv-fig2.png)
 図2：Jekyll–Hyde 跳躍スコア時系列ヒートマップ
 
 JH > 0.7 はスタイル逸脱の重大指標です。
