@@ -1,4 +1,13 @@
+---
+title: "Day 3 逸脱を計量する：PoR スパイクと ΔE / grv 異常"
+emoji: "📈"
+type: "tech"
+topics: ["PoR", "生成AI", "GPT4o", "LLMリスク", "AI安全性"]
+published: false
+---
+
 # Day 3 逸脱を計量する：PoRスパイクとΔE/grv異常
+
 
 ---
 
