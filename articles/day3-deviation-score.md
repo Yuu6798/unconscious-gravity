@@ -27,11 +27,11 @@ Day 2 で導入した PoR・ΔE・grv の動的トラッキングは、意味の
 - Δt 正規化：turn 間隔のばらつきを 1 ステップ単位に統一
 
 ### 2. 値スケーリング
-PoR・ΔE・grv はスケールが異なるため、全て `min-max` 正規化で **0–1** に揃える。
-\[
-X_{\text{norm}} = \frac{X - X_{\min}}{X_{\max} - X_{\min}}
-\]
+PoR・ΔE・grv はスケールが異なるため、全て `min-max` 正規化で **0–1** に揃える
 
+$$
+X_{\text{norm}} = \frac{X - X_{\min}}{X_{\max} - X_{\min}}
+$$
 ### 3. スムージング
 - `ewm(span=3)` で平滑化しつつ  
 - PoR スパイクの急変を残すように `adjust=False` 設定  
