@@ -180,6 +180,8 @@ $$
 
 $$
 
+<!-- GitHub fallback: 数式画像 -->
+![JH formula](/images/day5-jh-formula.png)
 **式の意味**  
 - **分子**は “跳躍” (逸脱) を押し上げた *促進要因*  
   - Δstyle (文体変化) が 42 %  
