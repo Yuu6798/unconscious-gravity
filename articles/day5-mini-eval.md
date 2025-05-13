@@ -170,12 +170,14 @@ JHスコアがターンを追って上昇し、ターン30付近で閾値0.7を�
 | PoR     | 0.11 |
 
 Δstyle の寄与が最大であり、「過剰迎合 → 文体跳躍」が最終逸脱の決定打であることが示唆されます。
-
 <!-- Shapley 寄与率を用いた JH スコア再構成式 -->
+
 $$
+
 \mathrm{JH}
-    = \frac{0.42\,\Delta\mathrm{style}\;+\;0.28\,\mathrm{grv}}
-           {0.19\,\Delta E\;+\;0.11\,\mathrm{PoR}}
+= \frac{0.42\,\Delta\mathrm{style} + 0.28\,\mathrm{grv}}
+       {0.19\,\Delta\!E + 0.11\,\mathrm{PoR}}
+
 $$
 
 **式の意味**  
