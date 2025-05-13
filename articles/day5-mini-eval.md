@@ -172,16 +172,8 @@ JHスコアがターンを追って上昇し、ターン30付近で閾値0.7を�
 Δstyle の寄与が最大であり、「過剰迎合 → 文体跳躍」が最終逸脱の決定打であることが示唆されます。
 <!-- Shapley 寄与率を用いた JH スコア再構成式 -->
 
-$$
-
-\mathrm{JH}
-= \frac{0.42\,\Delta\mathrm{style} + 0.28\,\mathrm{grv}}
-       {0.19\,\Delta\!E + 0.11\,\mathrm{PoR}}
-
-$$
-
-<!-- GitHub fallback: 数式画像 -->
 ![JH formula](/images/day5-jh-formula.png)
+
 **式の意味**  
 - **分子**は “跳躍” (逸脱) を押し上げた *促進要因*  
   - Δstyle (文体変化) が 42 %  
