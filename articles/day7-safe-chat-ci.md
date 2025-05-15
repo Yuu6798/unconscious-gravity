@@ -9,7 +9,7 @@ topics:
   - "GitHubActions"
   - "CIセーフティ"
   - "無意識的重力仮説"
-published: true
+published: false
 ---
 
 ## 序文 — スコアリングをCIに載せる理由
