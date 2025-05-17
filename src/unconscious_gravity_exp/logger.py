@@ -12,15 +12,18 @@ MAX_FILE_SIZE = 50 * 1024 * 1024  # bytes
 
 
 def append_log(turn: TurnLog, file: str = LOG_FILE) -> None:
+    """指定された ``file`` に ``TurnLog`` を追記保存する。
+
+    ログファイルのサイズが ``MAX_FILE_SIZE`` を超えるときは自動で
+    同じディレクトリ内にタイムスタンプ付きの名前でローテーションする。
     """
-    TurnLog インスタンスを Parquet ファイルに追記保存します。
-    ファイルが MAX_FILE_SIZE を超えた場合は、自動でローテーションします。
-    """
-    # ファイルが存在し、サイズが閾値超過ならローテーション
-    if os.path.exists(file) and os.path.getsize(file) > MAX_FILE_SIZE:
+    path = Path(file)
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    if path.exists() and path.stat().st_size > MAX_FILE_SIZE:
         timestamp = time.strftime("%Y%m%d%H%M%S")
-        rotated_name = f"{Path(file).stem}_{timestamp}.parquet"
-        os.rename(file, rotated_name)
+        rotated_name = path.with_name(f"{path.stem}_{timestamp}{path.suffix}")
+        path.rename(rotated_name)
 
     # TurnLog を DataFrame に変換
     df_new = pd.DataFrame([turn.__dict__])
