@@ -28,13 +28,13 @@ jobs:
 
       - name: Generate PoR Diagnostic Report
         run: |
-          python - << 'EOF'
-import pathlib
-from por_diagnostics.diagnostic import PoRDiagnostic
+          python - <<'EOF'
+          import pathlib
+          from por_diagnostics.diagnostic import PoRDiagnostic
 
-# Adjust 'logs' to your actual log directory
-PoRDiagnostic(pathlib.Path('logs')).run(pathlib.Path('.'))
-EOF
+          # Adjust 'logs' to your actual log directory
+          PoRDiagnostic(pathlib.Path('logs')).run(pathlib.Path('.'))
+          EOF
 
       - name: Commit updated report
         uses: stefanzweifel/git-auto-commit-action@v4
