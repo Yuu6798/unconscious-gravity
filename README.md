@@ -1,4 +1,5 @@
-[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](...)
+[![CI](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/test.yml)
+[![Diagnostics](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/por_diagnostics.yml/badge.svg)](https://github.com/Yuu6798/unconscious-gravity/actions/workflows/por_diagnostics.yml)
 <!-- BEGIN_AUTO_README -->
 # Unconscious Gravity Hypothesis (UGHer)
 
@@ -152,4 +153,21 @@ GitHub: https://github.com/Yuu6798/unconscious-gravity
 
 For collaboration or questions:  
 Twitter (X): @kkoo6798kamo
+
+
+---
+
+## ChatCompletionSampler
+
+`ChatCompletionSampler` provides a small wrapper around the OpenAI Chat Completion API to fetch multiple candidate responses. It is used by experiments to gather diverse outputs for analysis.
+
+## Requirements
+
+This project depends on several Python packages including:
+
+- numpy
+- pandas
+- tqdm
+- transformers
+- openai
 

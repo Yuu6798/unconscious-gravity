@@ -10,6 +10,7 @@ dependencies = [
     "pandas",
     "tqdm",
     "transformers",
+    "openai",
 ]
 
 [tool.setuptools]
