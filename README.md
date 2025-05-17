@@ -120,8 +120,12 @@ python examples/run_experiment.py --episodes 2 --turns 5 --out_dir data --log da
 
 Generated from metadata/semantic_index.json
 
-
 <!-- END_AUTO_README -->
+
+## UGH3 指標
+
+`ugh3-manifest.json` には、PoR 発火パターンを評価するための UGH3 指標セットをまとめている。
+
 ---
 
 ## Keywords
