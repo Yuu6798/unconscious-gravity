@@ -49,7 +49,7 @@ class PoRModel:
         - 4-arg: k × E × S^γ
         """
         if S < 0:
-            raise ValueError("entropy must be non-negative")
+            raise ValueError("semantic_density must be non-negative")
 
         # 2-arg version
         if k is None and gamma is None:
