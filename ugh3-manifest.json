@@ -1,0 +1,20 @@
+{
+  "phase": "UGH3",
+  "metrics": {
+    "urgency_factor": {
+      "formula": "U = Σ w_i × intensity_i",
+      "description": "各エピソードのプロンプト緊急度を集約した指標。",
+      "tags": ["urgency", "pressure"]
+    },
+    "gravity_bias": {
+      "formula": "G_bias = PoR_freq × alignment_score",
+      "description": "PoR発火頻度と整合スコアを掛け合わせた重力バイアス。",
+      "tags": ["gravity", "bias"]
+    },
+    "entropy_drift": {
+      "formula": "D = Σ |ΔE_i| / t",
+      "description": "時間あたりのエネルギー拡散度を示す指標。",
+      "tags": ["entropy", "divergence"]
+    }
+  }
+}
