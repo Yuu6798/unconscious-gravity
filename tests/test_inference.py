@@ -1,8 +1,6 @@
 import subprocess
 import sys
-from pathlib import Path
 import pandas as pd
-import pytest
 
 from unconscious_gravity_exp.inference import infer
 

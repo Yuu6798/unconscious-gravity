@@ -1,7 +1,7 @@
 # inference/por_inference_v2.py
 
 import numpy as np
-from typing import Optional, List, Tuple
+from typing import Optional, List
 from sentence_transformers import SentenceTransformer
 from models.por_formal_models import PoRModel
 import logging

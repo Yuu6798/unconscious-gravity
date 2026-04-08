@@ -1,5 +1,4 @@
 import pandas as pd
-import pytest
 
 from ugher_exp.por_detector import detect_pors
 from models.por_formal_models import PoRModel

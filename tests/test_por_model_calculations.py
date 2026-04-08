@@ -5,11 +5,9 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import pytest
-import numpy as np
 import math
 
 from models.por_formal_models import PoRModel
-from metadata.semantic_index import semantic_index  # 必要に応じて使ってください
 
 class TestPoRModelCalculations:
 

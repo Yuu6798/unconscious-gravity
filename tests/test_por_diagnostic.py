@@ -1,6 +1,5 @@
 import json
 import pytest
-from pathlib import Path
 from por_diagnostics.diagnostic import PoRDiagnostic
 
 @pytest.fixture
