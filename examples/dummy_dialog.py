@@ -3,12 +3,16 @@
 
 import argparse
 import random
+import sys
 from pathlib import Path
 
-from unconscious_gravity_exp.logger import append_log
-from unconscious_gravity_exp.proxy_config import TurnLog
-
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SRC_ROOT = PROJECT_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from unconscious_gravity_exp.logger import append_log  # noqa: E402
+from unconscious_gravity_exp.proxy_config import TurnLog  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
